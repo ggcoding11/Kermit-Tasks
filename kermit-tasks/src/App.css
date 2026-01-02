@@ -35,3 +35,7 @@ section .task-progress {
 section .task-progress .progress {
   width: 85%;
 }
+
+section .tasks-list ul {
+  list-style-type: none;
+}
