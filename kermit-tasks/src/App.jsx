@@ -3,8 +3,19 @@ import { useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [task, setTask] = useState("");
-  const [pomodoro, setPomodoro] = useState(1);
+  const [taskName, setTaskName] = useState("");
+  const [pomodoro, setPomodoro] = useState("");
+
+  let tasks = [
+    { name: "Task 1", pomodoros: 3 },
+    { name: "Task 2", pomodoros: 2 },
+    { name: "Task 3", pomodoros: 1 },
+  ];
+
+  const addTask = () => {
+    console.log(tasks);
+    tasks.push({ name: taskName, pomodoros: pomodoro });
+  };
 
   return (
     <div
@@ -81,7 +92,12 @@ const App = () => {
                     ></button>
                   </div>
                   <div className="modal-body">
-                    <form>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        addTask();
+                      }}
+                    >
                       <div className="mb-3">
                         <label htmlFor="task-name" className="form-label">
                           Task name
@@ -90,14 +106,15 @@ const App = () => {
                           type="text"
                           className="form-control"
                           id="task-name"
-                          value={task}
+                          value={taskName}
+                          required
                           onChange={(e) => {
-                            setTask(e.target.value);
+                            setTaskName(e.target.value);
                           }}
                         />
                       </div>
 
-                      <div className="w-100">
+                      <div className="w-100 mb-3">
                         <label htmlFor="pomodoro-number" className="form-label">
                           Pomodoro number
                         </label>
@@ -107,18 +124,24 @@ const App = () => {
                           id="pomodoro-number"
                           min={1}
                           value={pomodoro}
+                          required
                           onChange={(e) => {
                             setPomodoro(e.target.value);
                           }}
                           className="form-control w-25"
                         />
                       </div>
+
+                      <div className="d-flex justify-content-center">
+                        <button
+                          type="submit"
+                          className="btn btn-primary w-75"
+                          aria-label="Add task"
+                        >
+                          Add
+                        </button>
+                      </div>
                     </form>
-                  </div>
-                  <div className="modal-footer d-flex justify-content-center">
-                    <button type="button" className="btn btn-primary w-75">
-                      Add
-                    </button>
                   </div>
                 </div>
               </div>
