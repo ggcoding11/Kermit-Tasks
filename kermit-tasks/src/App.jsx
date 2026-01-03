@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 
 const App = () => {
@@ -62,90 +62,7 @@ const App = () => {
           </section>
 
           <footer className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Add task
-            </button>
-
-            <div
-              className="modal fade"
-              id="exampleModal"
-              tabIndex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h1 className="modal-title fs-5" id="exampleModalLabel">
-                      Add a new task
-                    </h1>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        addTask();
-                      }}
-                    >
-                      <div className="mb-3">
-                        <label htmlFor="task-name" className="form-label">
-                          Task name
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="task-name"
-                          value={taskName}
-                          required
-                          onChange={(e) => {
-                            setTaskName(e.target.value);
-                          }}
-                        />
-                      </div>
-
-                      <div className="w-100 mb-3">
-                        <label htmlFor="pomodoro-number" className="form-label">
-                          Pomodoro number
-                        </label>
-                        <input
-                          type="number"
-                          name=""
-                          id="pomodoro-number"
-                          min={1}
-                          value={pomodoro}
-                          required
-                          onChange={(e) => {
-                            setPomodoro(e.target.value);
-                          }}
-                          className="form-control w-25"
-                        />
-                      </div>
-
-                      <div className="d-flex justify-content-center">
-                        <button
-                          type="submit"
-                          className="btn btn-primary w-75"
-                          aria-label="Add task"
-                        >
-                          Add
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+          
           </footer>
         </div>
       </div>
