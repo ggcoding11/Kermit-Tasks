@@ -6,15 +6,15 @@ const App = () => {
   const [taskName, setTaskName] = useState("");
   const [pomodoro, setPomodoro] = useState("");
 
-  let tasks = [
-    { name: "Task 1", pomodoros: 3 },
-    { name: "Task 2", pomodoros: 2 },
-    { name: "Task 3", pomodoros: 1 },
-  ];
+  const [taskList, setTaskList] = useState([
+    { id: 1, name: "Task 1", pomodoros: 3 },
+    { id: 2, name: "Task 2", pomodoros: 2 },
+    { id: 3, name: "Task 3", pomodoros: 1 },
+  ]);
 
-  const addTask = () => {
-    console.log(tasks);
-    tasks.push({ name: taskName, pomodoros: pomodoro });
+  const addTask = (e) => {
+    e.preventDefault();
+    setTaskList(...taskList, { id: 4, name: { taskName }, pomodoros: { pomodoro } });
   };
 
   return (
@@ -30,6 +30,50 @@ const App = () => {
           </header>
 
           <section className="d-flex justify-content-center flex-column align-items-center mt-4">
+            <div className="form-group w-100 mb-3">
+              <form onSubmit={addTask}>
+                <h3>Add task</h3>
+                <div className="mb-3">
+                  <label htmlFor="task-name" className="form-label">
+                    Task name:
+                  </label>
+                  <input
+                    type="text"
+                    name=""
+                    id="task-name"
+                    className="form-control"
+                    onChange={(e) => {
+                      setTaskName(e.target.value);
+                    }}
+                    value={taskName}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="pomodoro-number" className="form-label">
+                    Pomodoro number:
+                  </label>
+                  <input
+                    type="number"
+                    name=""
+                    id="pomodoro-number"
+                    min={1}
+                    className="form-control"
+                    onChange={(e) => {
+                      setPomodoro(e.target.value);
+                    }}
+                    value={pomodoro}
+                  />
+                </div>
+
+                <div className="d-flex justify-content-center mb-3">
+                  <button type="submit" className="btn btn-primary w-75">
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+
             <div className="task-progress bg-secondary p-2">
               <div className="row">
                 <div className="col-9 d-flex justify-content-center align-items-center">
@@ -54,16 +98,16 @@ const App = () => {
 
             <div className="tasks-list mt-4">
               <ul>
-                <li className="bg-secondary">Task 1</li>
-                <li className="bg-secondary">Task 2</li>
-                <li className="bg-secondary">Task 3</li>
+                {taskList.map((item) => (
+                  <li key={item.id} className="bg-secondary">
+                    Name: {item.name} | Pomodoro number: {item.pomodoro}
+                  </li>
+                ))}
               </ul>
             </div>
           </section>
 
-          <footer className="d-flex justify-content-center">
-          
-          </footer>
+          <footer className="d-flex justify-content-center"></footer>
         </div>
       </div>
     </div>
