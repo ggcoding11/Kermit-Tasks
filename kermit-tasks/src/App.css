@@ -36,6 +36,7 @@ section .task-progress .progress {
   width: 85%;
 }
 
-section .tasks-list ul {
-  list-style-type: none;
+section .tasks-list .task {
+  cursor: pointer;
 }
+

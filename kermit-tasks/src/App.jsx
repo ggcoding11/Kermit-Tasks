@@ -3,18 +3,40 @@ import { useState, useRef } from "react";
 import "./App.css";
 
 const App = () => {
+  const taskIdAtual = useRef(0);
+
   const [taskName, setTaskName] = useState("");
   const [pomodoro, setPomodoro] = useState("");
 
-  const [taskList, setTaskList] = useState([
-    { id: 1, name: "Task 1", pomodoros: 3 },
-    { id: 2, name: "Task 2", pomodoros: 2 },
-    { id: 3, name: "Task 3", pomodoros: 1 },
-  ]);
+  const [taskList, setTaskList] = useState([]);
 
   const addTask = (e) => {
     e.preventDefault();
-    setTaskList(...taskList, { id: 4, name: { taskName }, pomodoros: { pomodoro } });
+    setTaskList([
+      ...taskList,
+      {
+        id: taskIdAtual.current++,
+        name: taskName,
+        pomodoros: pomodoro,
+        completed: false,
+      },
+    ]);
+
+    console.log(taskList);
+    setTaskName("");
+    setPomodoro("");
+  };
+
+  const checkTask = (taskId) => {
+    let novaLista = taskList.map((item) => {
+      if (item.id === taskId) {
+        item.completed = !item.completed;
+      }
+
+      return item;
+    });
+
+    setTaskList(novaLista);
   };
 
   return (
@@ -46,6 +68,7 @@ const App = () => {
                       setTaskName(e.target.value);
                     }}
                     value={taskName}
+                    required
                   />
                 </div>
 
@@ -63,6 +86,7 @@ const App = () => {
                       setPomodoro(e.target.value);
                     }}
                     value={pomodoro}
+                    required
                   />
                 </div>
 
@@ -96,14 +120,35 @@ const App = () => {
               </div>
             </div>
 
-            <div className="tasks-list mt-4">
-              <ul>
+            <div className="tasks-list w-100">
+              <div className="d-flex justify-content-center align-items-center flex-column">
                 {taskList.map((item) => (
-                  <li key={item.id} className="bg-secondary">
-                    Name: {item.name} | Pomodoro number: {item.pomodoro}
-                  </li>
+                  <div
+                    key={item.id}
+                    className="task d-flex justify-content-between p-2 mb-2 w-50"
+                    onClick={() => checkTask(item.id)}
+                  >
+                    <div className="d-flex gap-3">
+                      {item.completed === false ? (
+                        <i className="bi bi-circle"></i>
+                      ) : (
+                        <i className="bi bi-check-circle-fill"></i>
+                      )}
+                      <span>{item.name}</span>
+                    </div>
+
+                    <div className="d-flex gap-2">
+                      <button className="btn btn-primary btn-sm">
+                        <i className="bi bi-pencil-square"></i>
+                      </button>
+
+                      <button className="btn btn-danger btn-sm">
+                        <i className="bi bi-x"></i>
+                      </button>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </section>
 
