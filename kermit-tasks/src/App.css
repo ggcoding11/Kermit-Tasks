@@ -12,28 +12,8 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.card-principal {
-  height: 600px;
-  width: 600px;
-}
-
 header .title {
   font-family: "Outfit";
-}
-
-section .tasks-completed {
-  background-color: gray;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-}
-
-section .task-progress {
-  width: 60%;
-}
-
-section .task-progress .progress {
-  width: 85%;
 }
 
 section .tasks-list .task {

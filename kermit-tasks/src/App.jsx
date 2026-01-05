@@ -44,80 +44,53 @@ const App = () => {
       className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
       id="main"
     >
-      <div className="card card-principal">
+      <div className="card card-principal p-4">
         <div className="container">
-          <header className="d-flex gap-2">
+          <header className="d-flex justify-content-center align-items-center gap-2 mt-2">
             <img src="../photos/logo.png" alt="logo" />
             <h1 className="title">Kermit Tasks</h1>
           </header>
 
-          <section className="d-flex justify-content-center flex-column align-items-center mt-4">
-            <div className="form-group w-100 mb-3">
+          <section className="d-flex justify-content-center flex-column align-items-center mt-2">
+            <div className="form-group w-100">
               <form onSubmit={addTask}>
-                <h3>Add task</h3>
                 <div className="mb-3">
-                  <label htmlFor="task-name" className="form-label">
-                    Task name:
-                  </label>
                   <input
                     type="text"
                     name=""
                     id="task-name"
-                    className="form-control"
+                    className="form-control border border-secondary"
                     onChange={(e) => {
                       setTaskName(e.target.value);
                     }}
                     value={taskName}
+                    placeholder="Write the task name..."
                     required
                   />
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="pomodoro-number" className="form-label">
-                    Pomodoro number:
-                  </label>
                   <input
                     type="number"
                     name=""
                     id="pomodoro-number"
                     min={1}
-                    className="form-control"
+                    className="form-control border border-secondary"
                     onChange={(e) => {
                       setPomodoro(e.target.value);
                     }}
                     value={pomodoro}
+                    placeholder="How many pomodoros?"
                     required
                   />
                 </div>
 
-                <div className="d-flex justify-content-center mb-3">
-                  <button type="submit" className="btn btn-primary w-75">
-                    Add
+                <div className="d-flex justify-content-center">
+                  <button type="submit" className="btn btn-primary w-100">
+                    Add task
                   </button>
                 </div>
               </form>
-            </div>
-
-            <div className="task-progress bg-secondary p-2">
-              <div className="row">
-                <div className="col-9 d-flex justify-content-center align-items-center">
-                  <div
-                    className="progress"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow="50"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  >
-                    <div className="progress-bar w-50"></div>
-                  </div>
-                </div>
-                <div className="col-3">
-                  <div className="tasks-completed d-flex justify-content-center align-items-center">
-                    <span className="fw-bold">1/3</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="tasks-list w-100">
@@ -125,10 +98,10 @@ const App = () => {
                 {taskList.map((item) => (
                   <div
                     key={item.id}
-                    className="task d-flex justify-content-between p-2 mb-2 w-50"
+                    className="task d-flex justify-content-between align-items-center border border-secondary rounded w-100 gap-4 p-2 mt-3"
                     onClick={() => checkTask(item.id)}
                   >
-                    <div className="d-flex gap-3">
+                    <div className="d-flex gap-2">
                       {item.completed === false ? (
                         <i className="bi bi-circle"></i>
                       ) : (
