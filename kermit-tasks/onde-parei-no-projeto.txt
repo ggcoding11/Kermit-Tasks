@@ -1,2 +1,2 @@
-- Parei no estudo do uso do useRef
-- Agorsa preciso implementar o useRef para fechar o modal depois que eu clicar no botão de adicionar tarefa.
+- Fazer um input de number melhor
+- Implementar as funcionalidades de editar e remover as tasks
