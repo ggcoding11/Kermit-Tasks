@@ -54,7 +54,10 @@ const App = () => {
           <section className="d-flex justify-content-center flex-column align-items-center mt-2">
             <div className="form-group w-100">
               <form onSubmit={addTask}>
-                <div className="mb-3">
+                <div className="input-group mb-3">
+                  <span className="input-group-text border border-secondary">
+                    📝
+                  </span>
                   <input
                     type="text"
                     name=""
@@ -69,7 +72,10 @@ const App = () => {
                   />
                 </div>
 
-                <div className="mb-3">
+                <div className="input-group mb-3">
+                  <span className="input-group-text border border-secondary">
+                    ⏰
+                  </span>
                   <input
                     type="number"
                     name=""
@@ -98,7 +104,7 @@ const App = () => {
                 {taskList.map((item) => (
                   <div
                     key={item.id}
-                    className="task d-flex justify-content-between align-items-center border border-secondary rounded w-100 gap-4 p-2 mt-3"
+                    className="task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
                     onClick={() => checkTask(item.id)}
                   >
                     <div className="d-flex gap-2">
