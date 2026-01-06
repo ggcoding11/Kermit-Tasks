@@ -44,7 +44,7 @@ const App = () => {
       className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
       id="main"
     >
-      <div className="card card-principal p-4">
+      <div className="card card-principal p-3">
         <div className="container">
           <header className="d-flex justify-content-center align-items-center gap-2 mt-2">
             <img src="../photos/logo.png" alt="logo" />
@@ -113,10 +113,10 @@ const App = () => {
                       ) : (
                         <i className="bi bi-check-circle-fill"></i>
                       )}
-                      <span>{item.name}</span>
+                      <span className="fw-bold">{item.name}</span>
                     </div>
 
-                    <div className="d-flex gap-2">
+                    <div className="d-flex align-items-center gap-2">
                       <button className="btn btn-primary btn-sm">
                         <i className="bi bi-pencil-square"></i>
                       </button>
@@ -124,6 +124,10 @@ const App = () => {
                       <button className="btn btn-danger btn-sm">
                         <i className="bi bi-x"></i>
                       </button>
+
+                      <div className="bg-secondary p-1 rounded-circle">
+                        <span className="text-white fw-bold">0/{item.pomodoros}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
