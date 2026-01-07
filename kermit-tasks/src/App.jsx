@@ -128,7 +128,11 @@ const App = () => {
 
                     <div className="d-flex align-items-center gap-2">
                       <button className="btn btn-primary btn-sm">
-                        <i className="bi bi-pencil-square"></i>
+                        <i
+                          className="bi bi-pencil-square"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modal-edit-task"
+                        ></i>
                       </button>
 
                       <button className="btn btn-danger btn-sm">
@@ -139,6 +143,43 @@ const App = () => {
                         <span className="text-white fw-bold">
                           0/{item.pomodoros}
                         </span>
+                      </div>
+
+                      <div
+                        class="modal fade"
+                        id="modal-edit-task"
+                        tabindex="-1"
+                        aria-labelledby="painel-editar-task"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="titulo-modal">
+                                Edit task
+                              </h1>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">...</div>
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button type="button" class="btn btn-primary">
+                                Save changes
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

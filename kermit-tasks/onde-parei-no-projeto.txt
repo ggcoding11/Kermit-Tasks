@@ -1,2 +1,2 @@
-- Fazer um input de number melhor
-- Implementar as funcionalidades de editar e remover as tasks
+- Resolver o onClick da div, porque está dando conflito com o do botão
+- Continuar a desenvolvedor a edit da task
