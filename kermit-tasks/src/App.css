@@ -12,11 +12,13 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-header .title {
+.title {
   font-family: "Outfit";
 }
 
-section .tasks-list .task {
+
+
+.tasks-list .task {
   cursor: pointer;
 }
 
