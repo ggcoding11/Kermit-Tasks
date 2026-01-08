@@ -16,7 +16,9 @@
   font-family: "Outfit";
 }
 
-
+.task-name {
+  font-size: 0.85em;
+}
 
 .tasks-list .task {
   cursor: pointer;

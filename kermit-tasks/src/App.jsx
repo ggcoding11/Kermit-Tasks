@@ -123,16 +123,23 @@ const App = () => {
                       ) : (
                         <i className="bi bi-check-circle-fill"></i>
                       )}
-                      <span className="fw-bold">{item.name}</span>
+                      <div className="task-name text-break fw-bold">
+                        {item.name}
+                      </div>
                     </div>
 
-                    <div className="d-flex align-items-center gap-2">
-                      <button className="btn btn-primary btn-sm">
-                        <i
-                          className="bi bi-pencil-square"
-                          data-bs-toggle="modal"
-                          data-bs-target="#modal-edit-task"
-                        ></i>
+                    <div
+                      className="d-flex align-items-center gap-2"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      <button
+                        className="btn btn-primary btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-task"
+                      >
+                        <i className="bi bi-pencil-square"></i>
                       </button>
 
                       <button className="btn btn-danger btn-sm">
@@ -146,35 +153,55 @@ const App = () => {
                       </div>
 
                       <div
-                        class="modal fade"
+                        className="modal fade"
                         id="modal-edit-task"
-                        tabindex="-1"
+                        tabIndex="-1"
                         aria-labelledby="painel-editar-task"
                         aria-hidden="true"
                       >
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="titulo-modal">
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h1
+                                className="modal-title fs-5"
+                                id="titulo-modal"
+                              >
                                 Edit task
                               </h1>
                               <button
                                 type="button"
-                                class="btn-close"
+                                className="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                               ></button>
                             </div>
-                            <div class="modal-body">...</div>
-                            <div class="modal-footer">
+                            <div className="modal-body">
+                              <div className="input-group mb-3">
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  placeholder="Edit the task name..."
+                                />
+                              </div>
+
+                              <div className="input-group mb-3">
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  placeholder="Edit the pomodoro number"
+                                  min={1}
+                                />
+                              </div>
+                            </div>
+                            <div className="modal-footer">
                               <button
                                 type="button"
-                                class="btn btn-secondary"
+                                className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                               >
                                 Close
                               </button>
-                              <button type="button" class="btn btn-primary">
+                              <button type="button" className="btn btn-primary">
                                 Save changes
                               </button>
                             </div>
