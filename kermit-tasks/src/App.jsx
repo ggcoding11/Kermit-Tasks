@@ -4,6 +4,7 @@ import "./App.css";
 
 const App = () => {
   const taskIdAtual = useRef(0);
+  const taskSelection = useRef(null);
 
   const [taskName, setTaskName] = useState("");
   const [pomodoro, setPomodoro] = useState("");
@@ -13,6 +14,8 @@ const App = () => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
 
   useEffect(() => {
+    console.log(taskList);
+
     if (taskList.length != 0) {
       setShowPlaceholder(false);
     } else {
@@ -35,6 +38,11 @@ const App = () => {
     console.log(taskList);
     setTaskName("");
     setPomodoro("");
+  };
+
+  const editTask = (e) => {
+    console.log(e);
+    console.log(taskSelection.current.taskid);
   };
 
   const checkTask = (taskId) => {
@@ -114,6 +122,8 @@ const App = () => {
                 {taskList.map((item) => (
                   <div
                     key={item.id}
+                    taskid={item.id}
+                    ref={taskSelection}
                     className="task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
                     onClick={() => checkTask(item.id)}
                   >
@@ -177,18 +187,24 @@ const App = () => {
                             </div>
                             <div className="modal-body">
                               <div className="input-group mb-3">
+                                <span className="input-group-text border border-secondary">
+                                  📝
+                                </span>
                                 <input
                                   type="text"
-                                  className="form-control"
+                                  className="form-control border border-secondary"
                                   placeholder="Edit the task name..."
                                 />
                               </div>
 
                               <div className="input-group mb-3">
+                                <span className="input-group-text border border-secondary">
+                                  ⏰
+                                </span>
                                 <input
                                   type="number"
-                                  className="form-control"
-                                  placeholder="Edit the pomodoro number"
+                                  className="form-control border border-secondary"
+                                  placeholder="Edit the number of pomodoros"
                                   min={1}
                                 />
                               </div>
@@ -201,7 +217,11 @@ const App = () => {
                               >
                                 Close
                               </button>
-                              <button type="button" className="btn btn-primary">
+                              <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={editTask}
+                              >
                                 Save changes
                               </button>
                             </div>

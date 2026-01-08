@@ -1,2 +1,2 @@
-- Resolver o onClick da div, porque está dando conflito com o do botão
-- Continuar a desenvolvedor a edit da task
+- Ver uma forma de passar as edições pra task específica que eu quero
+- Continuar a funcionalidade de Edit Task
