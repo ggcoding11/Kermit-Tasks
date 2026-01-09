@@ -4,12 +4,16 @@ import "./App.css";
 
 const App = () => {
   const taskIdAtual = useRef(0);
-  const taskSelection = useRef(null);
 
   const [taskName, setTaskName] = useState("");
   const [pomodoro, setPomodoro] = useState("");
 
+  const [taskNameEdited, setTaskNameEdited] = useState("");
+  const [pomodoroEdited, setPomodoroEdited] = useState("");
+
   const [taskList, setTaskList] = useState([]);
+
+  const [taskEdited, setTaskEdited] = useState(null);
 
   const [showPlaceholder, setShowPlaceholder] = useState(true);
 
@@ -41,8 +45,20 @@ const App = () => {
   };
 
   const editTask = (e) => {
-    console.log(e);
-    console.log(taskSelection.current.taskid);
+    e.preventDefault();
+
+    const novoArray = taskList.map((item) => {
+      if (item.id === taskEdited) {
+        item.name = taskNameEdited;
+        item.pomodoros = pomodoroEdited;
+      }
+
+      return item;
+    });
+
+    setTaskList(novoArray);
+
+    alert("The task was sucessfully edited!");
   };
 
   const checkTask = (taskId) => {
@@ -122,8 +138,6 @@ const App = () => {
                 {taskList.map((item) => (
                   <div
                     key={item.id}
-                    taskid={item.id}
-                    ref={taskSelection}
                     className="task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
                     onClick={() => checkTask(item.id)}
                   >
@@ -148,6 +162,11 @@ const App = () => {
                         className="btn btn-primary btn-sm"
                         data-bs-toggle="modal"
                         data-bs-target="#modal-edit-task"
+                        onClick={() => {
+                          setTaskEdited(item.id);
+                          setTaskNameEdited(item.name);
+                          setPomodoroEdited(item.pomodoros);
+                        }}
                       >
                         <i className="bi bi-pencil-square"></i>
                       </button>
@@ -160,73 +179,6 @@ const App = () => {
                         <span className="text-white fw-bold">
                           0/{item.pomodoros}
                         </span>
-                      </div>
-
-                      <div
-                        className="modal fade"
-                        id="modal-edit-task"
-                        tabIndex="-1"
-                        aria-labelledby="painel-editar-task"
-                        aria-hidden="true"
-                      >
-                        <div className="modal-dialog">
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h1
-                                className="modal-title fs-5"
-                                id="titulo-modal"
-                              >
-                                Edit task
-                              </h1>
-                              <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
-                            </div>
-                            <div className="modal-body">
-                              <div className="input-group mb-3">
-                                <span className="input-group-text border border-secondary">
-                                  📝
-                                </span>
-                                <input
-                                  type="text"
-                                  className="form-control border border-secondary"
-                                  placeholder="Edit the task name..."
-                                />
-                              </div>
-
-                              <div className="input-group mb-3">
-                                <span className="input-group-text border border-secondary">
-                                  ⏰
-                                </span>
-                                <input
-                                  type="number"
-                                  className="form-control border border-secondary"
-                                  placeholder="Edit the number of pomodoros"
-                                  min={1}
-                                />
-                              </div>
-                            </div>
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-bs-dismiss="modal"
-                              >
-                                Close
-                              </button>
-                              <button
-                                type="button"
-                                className="btn btn-primary"
-                                onClick={editTask}
-                              >
-                                Save changes
-                              </button>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -246,6 +198,79 @@ const App = () => {
                   </span>
                 </div>
               )}
+            </div>
+
+            <div
+              className="modal fade"
+              id="modal-edit-task"
+              tabIndex="-1"
+              aria-labelledby="painel-editar-task"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="titulo-modal">
+                      Edit task
+                    </h1>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+
+                  <form onSubmit={editTask}>
+                    <div className="modal-body">
+                      <div className="input-group mb-3">
+                        <span className="input-group-text border border-secondary">
+                          📝
+                        </span>
+                        <input
+                          type="text"
+                          className="form-control border border-secondary"
+                          placeholder="Edit the task name..."
+                          value={taskNameEdited}
+                          onChange={(e) => {
+                            setTaskNameEdited(e.target.value);
+                          }}
+                          required
+                        />
+                      </div>
+
+                      <div className="input-group mb-3">
+                        <span className="input-group-text border border-secondary">
+                          ⏰
+                        </span>
+                        <input
+                          type="number"
+                          className="form-control border border-secondary"
+                          placeholder="Edit the number of pomodoros"
+                          min={1}
+                          value={pomodoroEdited}
+                          onChange={(e) => {
+                            setPomodoroEdited(e.target.value);
+                          }}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="submit" className="btn btn-primary">
+                        Save changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </section>
 
