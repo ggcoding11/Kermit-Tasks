@@ -61,8 +61,14 @@ const App = () => {
     alert("The task was sucessfully edited!");
   };
 
+  const deleteTask = (taskId) => {
+    const novoArray = taskList.filter((item) => item.id != taskId);
+
+    setTaskList(novoArray);
+  };
+
   const checkTask = (taskId) => {
-    let novaLista = taskList.map((item) => {
+    const novoArray = taskList.map((item) => {
       if (item.id === taskId) {
         item.completed = !item.completed;
       }
@@ -70,7 +76,7 @@ const App = () => {
       return item;
     });
 
-    setTaskList(novaLista);
+    setTaskList(novoArray);
   };
 
   return (
@@ -171,7 +177,10 @@ const App = () => {
                         <i className="bi bi-pencil-square"></i>
                       </button>
 
-                      <button className="btn btn-danger btn-sm">
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deleteTask(item.id)}
+                      >
                         <i className="bi bi-x"></i>
                       </button>
 
