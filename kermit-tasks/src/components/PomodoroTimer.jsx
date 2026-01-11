@@ -88,7 +88,7 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
 
   return (
     <div className="container-fluid vh-100 py-4 main">
-      <div className="row mb-4">
+      <div className="row mb-3">
         <div className="col-12 text-center">
           <h1 className="text-white fw-bold">
             <span>⏰</span>
@@ -97,7 +97,7 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
         </div>
       </div>
 
-      <div className="d-flex justify-content-center gap-3">
+      <div className="d-flex justify-content-center gap-3 mb-4">
         <ComponentSelector
           components={components}
           componentUsed={componentUsed}
@@ -105,7 +105,7 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
         ></ComponentSelector>
       </div>
 
-      <div className="row mt-4">
+      <div className="row">
         <div className="col-12 d-flex justify-content-center">
           <div
             className={

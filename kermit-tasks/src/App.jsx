@@ -10,7 +10,7 @@ const components = [
 ];
 
 const App = () => {
-  const [componentUsed, setComponentUsed] = useState("Tasks");
+  const [componentUsed, setComponentUsed] = useState(components[0].name);
 
   return (
     <div>
