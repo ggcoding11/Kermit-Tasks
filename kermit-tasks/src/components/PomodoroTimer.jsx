@@ -96,38 +96,25 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
         </div>
       </div>
 
-      <div className="d-flex justify-content-center">
-        <input
-          type="radio"
-          className="btn-check"
-          name="options-base"
-          id="option1"
-          value={components[0].name}
-          autoComplete="off"
-          checked={componentUsed === components[0].name}
-          onChange={(e) => {
-            setComponentUsed(e.target.value);
-          }}
-        />
-        <label className="btn" htmlFor="option1">
-          Tasks
-        </label>
+      <div className="d-flex justify-content-center gap-3">
+        {components.map((item) => (
+          <div key={item.id}>
+            <input
+              type="radio"
+              name="options-base"
+              className="btn-check"
+              id={item.name}
+              value={item.name}
+              autoComplete="off"
+              checked={componentUsed === item.name}
+              onChange={(e) => setComponentUsed(e.target.value)}
+            />
 
-        <input
-          type="radio"
-          className="btn-check"
-          name="options-base"
-          id="option2"
-          value={components[1].name}
-          autoComplete="off"
-          checked={componentUsed === components[1].name}
-          onChange={(e) => {
-            setComponentUsed(e.target.value);
-          }}
-        />
-        <label className="btn btn-outline-success" htmlFor="option2">
-          Pomodoro Timer
-        </label>
+            <label className="btn btn-outline-success" htmlFor={item.name}>
+              {item.name}
+            </label>
+          </div>
+        ))}
       </div>
 
       <div className="row mt-4">

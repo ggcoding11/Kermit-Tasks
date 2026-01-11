@@ -93,37 +93,27 @@ const Tasks = ({ components, componentUsed, setComponentUsed }) => {
 
           <section className="d-flex justify-content-center flex-column align-items-center mt-4">
             <div className="component-selection d-flex justify-content-center gap-3 w-100 mb-4">
-              <input
-                type="radio"
-                className="btn-check"
-                name="options-base"
-                id="option1"
-                value={components[0].name}
-                autoComplete="off"
-                checked={componentUsed === components[0].name}
-                onChange={(e) => {
-                  setComponentUsed(e.target.value);
-                }}
-              />
-              <label className="btn btn-outline-success" htmlFor="option1">
-                Tasks
-              </label>
+              {components.map((item) => (
+                <div key={item.id}>
+                  <input
+                    type="radio"
+                    name="options-base"
+                    className="btn-check"
+                    id={item.name}
+                    value={item.name}
+                    autoComplete="off"
+                    checked={componentUsed === item.name}
+                    onChange={(e) => setComponentUsed(e.target.value)}
+                  />
 
-              <input
-                type="radio"
-                className="btn-check"
-                name="options-base"
-                id="option2"
-                value={components[1].name}
-                autoComplete="off"
-                checked={componentUsed === components[1].name}
-                onChange={(e) => {
-                  setComponentUsed(e.target.value);
-                }}
-              />
-              <label className="btn" htmlFor="option2">
-                Pomodoro Timer
-              </label>
+                  <label
+                    className="btn btn-outline-success"
+                    htmlFor={item.name}
+                  >
+                    {item.name}
+                  </label>
+                </div>
+              ))}
             </div>
 
             <div className="form-group w-100">
