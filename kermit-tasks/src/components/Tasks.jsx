@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import "./Tasks.css";
 
-const Tasks = ({ componentUsed, setComponentUsed }) => {
+const Tasks = ({ components, componentUsed, setComponentUsed }) => {
   const taskIdAtual = useRef(0);
 
   const [taskName, setTaskName] = useState("");
@@ -98,8 +98,12 @@ const Tasks = ({ componentUsed, setComponentUsed }) => {
                 className="btn-check"
                 name="options-base"
                 id="option1"
+                value={components[0].name}
                 autoComplete="off"
-                checked={componentUsed === "Tasks"}
+                checked={componentUsed === components[0].name}
+                onChange={(e) => {
+                  setComponentUsed(e.target.value);
+                }}
               />
               <label className="btn btn-outline-success" htmlFor="option1">
                 Tasks
@@ -110,8 +114,12 @@ const Tasks = ({ componentUsed, setComponentUsed }) => {
                 className="btn-check"
                 name="options-base"
                 id="option2"
+                value={components[1].name}
                 autoComplete="off"
-                onClick={() => setComponentUsed("PomodoroTimer")}
+                checked={componentUsed === components[1].name}
+                onChange={(e) => {
+                  setComponentUsed(e.target.value);
+                }}
               />
               <label className="btn" htmlFor="option2">
                 Pomodoro Timer

@@ -16,12 +16,14 @@ const App = () => {
     <div>
       {componentUsed === components[0].name && (
         <Tasks
+          components={components}
           componentUsed={componentUsed}
           setComponentUsed={setComponentUsed}
         ></Tasks>
       )}
       {componentUsed === components[1].name && (
         <PomodoroTimer
+          components={components}
           componentUsed={componentUsed}
           setComponentUsed={setComponentUsed}
         ></PomodoroTimer>

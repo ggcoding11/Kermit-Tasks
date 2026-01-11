@@ -1,2 +1,2 @@
-- Melhorar a integração do Pomodoro com o Tasks
-- Implementar a conclusão das tasks pelo Timer
+- Usar o .map para renderizar a os inputs de cada componente
+- Melhorar a aparência dos inputs para cada componente

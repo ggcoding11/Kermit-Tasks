@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import somBotao from "../assets/sounds/somBotao.mp3";
 import "./PomodoroTimer.css";
 
-const PomodoroTimer = ({ componentUsed, setComponentUsed }) => {
+const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
   const tempoCicloPomodoro = 25;
   const tempoPausaCurta = 5;
   const tempoPausaLonga = 30;
@@ -102,8 +102,12 @@ const PomodoroTimer = ({ componentUsed, setComponentUsed }) => {
           className="btn-check"
           name="options-base"
           id="option1"
+          value={components[0].name}
           autoComplete="off"
-          onClick={() => setComponentUsed("Tasks")}
+          checked={componentUsed === components[0].name}
+          onChange={(e) => {
+            setComponentUsed(e.target.value);
+          }}
         />
         <label className="btn" htmlFor="option1">
           Tasks
@@ -114,8 +118,12 @@ const PomodoroTimer = ({ componentUsed, setComponentUsed }) => {
           className="btn-check"
           name="options-base"
           id="option2"
+          value={components[1].name}
           autoComplete="off"
-          checked = {componentUsed === "PomodoroTimer"}
+          checked={componentUsed === components[1].name}
+          onChange={(e) => {
+            setComponentUsed(e.target.value);
+          }}
         />
         <label className="btn btn-outline-success" htmlFor="option2">
           Pomodoro Timer
