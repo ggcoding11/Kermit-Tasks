@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import somBotao from "../assets/sounds/somBotao.mp3";
+import ComponentSelector from "./ComponentSelector";
 import "./PomodoroTimer.css";
 
 const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
@@ -97,24 +98,11 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
       </div>
 
       <div className="d-flex justify-content-center gap-3">
-        {components.map((item) => (
-          <div key={item.id}>
-            <input
-              type="radio"
-              name="options-base"
-              className="btn-check"
-              id={item.name}
-              value={item.name}
-              autoComplete="off"
-              checked={componentUsed === item.name}
-              onChange={(e) => setComponentUsed(e.target.value)}
-            />
-
-            <label className="btn btn-outline-success" htmlFor={item.name}>
-              {item.name}
-            </label>
-          </div>
-        ))}
+        <ComponentSelector
+          components={components}
+          componentUsed={componentUsed}
+          setComponentUsed={setComponentUsed}
+        ></ComponentSelector>
       </div>
 
       <div className="row mt-4">

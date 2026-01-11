@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
+import ComponentSelector from "./ComponentSelector";
 import "./Tasks.css";
 
 const Tasks = ({ components, componentUsed, setComponentUsed }) => {
@@ -93,27 +94,11 @@ const Tasks = ({ components, componentUsed, setComponentUsed }) => {
 
           <section className="d-flex justify-content-center flex-column align-items-center mt-4">
             <div className="component-selection d-flex justify-content-center gap-3 w-100 mb-4">
-              {components.map((item) => (
-                <div key={item.id}>
-                  <input
-                    type="radio"
-                    name="options-base"
-                    className="btn-check"
-                    id={item.name}
-                    value={item.name}
-                    autoComplete="off"
-                    checked={componentUsed === item.name}
-                    onChange={(e) => setComponentUsed(e.target.value)}
-                  />
-
-                  <label
-                    className="btn btn-outline-success"
-                    htmlFor={item.name}
-                  >
-                    {item.name}
-                  </label>
-                </div>
-              ))}
+              <ComponentSelector
+                components={components}
+                componentUsed={componentUsed}
+                setComponentUsed={setComponentUsed}
+              ></ComponentSelector>
             </div>
 
             <div className="form-group w-100">
