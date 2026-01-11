@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import "./Tasks.css";
 
-const Tasks = () => {
+const Tasks = ({ componentUsed, setComponentUsed }) => {
   const taskIdAtual = useRef(0);
 
   const [taskName, setTaskName] = useState("");
@@ -95,24 +95,25 @@ const Tasks = () => {
             <div className="component-selection d-flex justify-content-center gap-3 w-100 mb-4">
               <input
                 type="radio"
-                class="btn-check"
+                className="btn-check"
                 name="options-base"
-                id="option5"
-                autocomplete="off"
-                checked
+                id="option1"
+                autoComplete="off"
+                checked={componentUsed === "Tasks"}
               />
-              <label class="btn" for="option5">
+              <label className="btn btn-outline-success" htmlFor="option1">
                 Tasks
               </label>
 
               <input
                 type="radio"
-                class="btn-check"
+                className="btn-check"
                 name="options-base"
-                id="option6"
-                autocomplete="off"
+                id="option2"
+                autoComplete="off"
+                onClick={() => setComponentUsed("PomodoroTimer")}
               />
-              <label class="btn" for="option6">
+              <label className="btn" htmlFor="option2">
                 Pomodoro Timer
               </label>
             </div>

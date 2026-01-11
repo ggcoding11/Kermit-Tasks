@@ -1,0 +1,51 @@
+/* Geral */
+.main {
+  background-color: #302957;
+}
+
+/* Geral */
+
+/* Botões de Timer */
+.row-buttons .btn {
+  background-color: #423a6b;
+}
+
+/* Botões de Timer */
+.row-buttons.btn {
+  font-size: 0.8em;
+}
+
+.row-buttons .btn:hover {
+  background-color: #605a8b;
+}
+/* Botões de Timer */
+
+/* Timer */
+.container-timer {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  background-color: #1c173b;
+}
+
+.container-timer #timer {
+  font-size: 3.5em;
+}
+
+.circulo-externo {
+  background-color: rgb(146, 44, 44);
+  border-radius: 50%;
+  height: 260px;
+  width: 260px;
+  box-shadow: black 1px 1px 40px;
+}
+
+.em-timer {
+  background-color: rgb(146, 44, 44);
+}
+
+.em-pausa {
+  background-color: rgb(41, 54, 112);
+}
+
+/* Timer */

@@ -1,2 +1,2 @@
-- Resolver como fazer os botões ficarem com toogle
-- Terminar a funcionalidade de troca de componentes
+- Melhorar a integração do Pomodoro com o Tasks
+- Implementar a conclusão das tasks pelo Timer
