@@ -3,20 +3,24 @@ import { useState, useRef, useEffect } from "react";
 import ComponentSelector from "./ComponentSelector";
 import "./Tasks.css";
 
-const Tasks = ({ components, componentUsed, setComponentUsed }) => {
-  const taskIdAtual = useRef(0);
-
-  const [taskName, setTaskName] = useState("");
-  const [pomodoro, setPomodoro] = useState("");
-
+const Tasks = ({
+  components,
+  componentUsed,
+  setComponentUsed,
+  taskList,
+  setTaskList,
+  taskIdAtual,
+  taskName,
+  setTaskName,
+  taskPomodoros,
+  setTaskPomodoros,
+}) => {
   const [taskNameEdited, setTaskNameEdited] = useState("");
-  const [pomodoroEdited, setPomodoroEdited] = useState("");
-
-  const [taskList, setTaskList] = useState([]);
+  const [taskPomodorosEdited, setTaskPomodorosEdited] = useState("");
 
   const [taskEdited, setTaskEdited] = useState(null);
 
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [showPlaceholder, setShowPlaceholder] = useState(null);
 
   useEffect(() => {
     console.log(taskList);
@@ -35,14 +39,14 @@ const Tasks = ({ components, componentUsed, setComponentUsed }) => {
       {
         id: taskIdAtual.current++,
         name: taskName,
-        pomodoros: pomodoro,
+        pomodoros: taskPomodoros,
         completed: false,
       },
     ]);
 
     console.log(taskList);
     setTaskName("");
-    setPomodoro("");
+    setTaskPomodoros("");
   };
 
   const editTask = (e) => {
@@ -51,7 +55,7 @@ const Tasks = ({ components, componentUsed, setComponentUsed }) => {
     const novoArray = taskList.map((item) => {
       if (item.id === taskEdited) {
         item.name = taskNameEdited;
-        item.pomodoros = pomodoroEdited;
+        item.pomodoros = taskPomodorosEdited;
       }
 
       return item;
@@ -134,7 +138,7 @@ const Tasks = ({ components, componentUsed, setComponentUsed }) => {
                     onChange={(e) => {
                       setPomodoro(e.target.value);
                     }}
-                    value={pomodoro}
+                    value={taskPomodoros}
                     placeholder="How many pomodoros?"
                     required
                   />
@@ -266,9 +270,9 @@ const Tasks = ({ components, componentUsed, setComponentUsed }) => {
                           className="form-control border border-secondary"
                           placeholder="Edit the number of pomodoros"
                           min={1}
-                          value={pomodoroEdited}
+                          value={taskPomodorosEdited}
                           onChange={(e) => {
-                            setPomodoroEdited(e.target.value);
+                            setTaskPomodorosEdited(e.target.value);
                           }}
                           required
                         />

@@ -1,3 +1,2 @@
-- Terminei de ver o vídeo: não preciso do React Router pra resolver
-- Para resolver o bug eu preciso elevar o estado (state lifting)
-- Veja como fazer isso pra resolver o pepino
+- Organizar o código
+- Fazer com que o timer rode mesmo fora do componente

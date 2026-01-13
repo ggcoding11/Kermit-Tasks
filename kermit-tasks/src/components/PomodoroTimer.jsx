@@ -3,21 +3,27 @@ import somBotao from "../assets/sounds/somBotao.mp3";
 import ComponentSelector from "./ComponentSelector";
 import "./PomodoroTimer.css";
 
-const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
-  const tempoCicloPomodoro = 25;
+const PomodoroTimer = ({
+  components,
+  componentUsed,
+  setComponentUsed,
+  contPomodoro,
+  setContPomodoro,
+  estaLigadoTimer,
+  setEstaLigadoTimer,
+  estaEmPausa,
+  setEstaEmPausa,
+  segundosRestante,
+  setSegundosRestante,
+  tempoCicloPomodoro,
+  timer,
+  rodarTimer,
+}) => {
   const tempoPausaCurta = 5;
   const tempoPausaLonga = 30;
 
-  const [contPomodoro, setContPomodoro] = useState(1);
-
-  const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
-  const [estaEmPausa, setEstaEmPausa] = useState(false);
-
   const [nomeBotao, setNomeBotao] = useState("START");
 
-  const [segundosRestante, setSegundosRestante] = useState(
-    tempoCicloPomodoro * 60
-  );
   const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState(
     String(tempoCicloPomodoro) + ":00"
   );
@@ -35,8 +41,6 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
     }
   };
 
-  const timer = useRef();
-
   useEffect(() => {
     if (estaEmPausa === true) {
       setNomeBotao("SKIP");
@@ -49,9 +53,7 @@ const PomodoroTimer = ({ components, componentUsed, setComponentUsed }) => {
     }
 
     if (estaLigadoTimer === true || estaEmPausa === true) {
-      timer.current = setInterval(() => {
-        setSegundosRestante((segundosRestante) => segundosRestante - 1);
-      }, 1000);
+      rodarTimer();
     }
 
     return () => {
