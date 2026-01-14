@@ -19,7 +19,7 @@ const App = () => {
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
   const [estaEmPausa, setEstaEmPausa] = useState(false);
 
-  const tempoCicloPomodoro = useRef(25);
+  const tempoCicloPomodoro = useRef(0.1);
 
   const timer = useRef(null);
 
@@ -39,6 +39,8 @@ const App = () => {
 
   return (
     <div>
+      {segundosRestante}
+
       {componentUsed === components[0].name && (
         <Tasks
           components={components}

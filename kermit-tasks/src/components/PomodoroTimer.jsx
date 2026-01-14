@@ -19,14 +19,12 @@ const PomodoroTimer = ({
   timer,
   rodarTimer,
 }) => {
-  const tempoPausaCurta = 5;
+  const tempoPausaCurta = 0.1;
   const tempoPausaLonga = 30;
 
   const [nomeBotao, setNomeBotao] = useState("START");
 
-  const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState(
-    String(tempoCicloPomodoro) + ":00"
-  );
+  const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
 
   const somClique = useRef(new Audio(somBotao));
 
@@ -42,6 +40,10 @@ const PomodoroTimer = ({
   };
 
   useEffect(() => {
+    setTempoFormatoPomodoro(tempoCicloPomodoro + ":00");
+  }, [tempoCicloPomodoro]);
+
+  useEffect(() => {
     if (estaEmPausa === true) {
       setNomeBotao("SKIP");
     } else {
@@ -53,12 +55,10 @@ const PomodoroTimer = ({
     }
 
     if (estaLigadoTimer === true || estaEmPausa === true) {
-      rodarTimer();
+      if (timer.current === null) {
+        rodarTimer();
+      }
     }
-
-    return () => {
-      clearInterval(timer.current);
-    };
   }, [estaLigadoTimer, estaEmPausa]);
 
   useEffect(() => {

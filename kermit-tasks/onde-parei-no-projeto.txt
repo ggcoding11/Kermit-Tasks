@@ -1,2 +1,3 @@
-- Organizar o código
-- Fazer com que o timer rode mesmo fora do componente
+- Quase resolvido, mas ainda tem problemas
+- O tempo rola fora do timer, mas eu preciso fazer o esquema de validação rolar mesmo fora do timer
+- Por isso, quando eu estou no Tasks, se o timer chega a 0, ele vai pro negativo, por que não tem as condições

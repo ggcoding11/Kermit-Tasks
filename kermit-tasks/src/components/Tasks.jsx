@@ -136,7 +136,7 @@ const Tasks = ({
                     min={1}
                     className="form-control border border-secondary"
                     onChange={(e) => {
-                      setPomodoro(e.target.value);
+                      setTaskPomodoros(e.target.value);
                     }}
                     value={taskPomodoros}
                     placeholder="How many pomodoros?"
