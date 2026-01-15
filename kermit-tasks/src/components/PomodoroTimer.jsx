@@ -18,13 +18,12 @@ const PomodoroTimer = ({
   tempoCicloPomodoro,
   timer,
   rodarTimer,
+  tempoFormatoPomodoro,
+  setTempoFormatoPomodoro,
+  tempoPausaCurta,
+  tempoPausaLonga,
 }) => {
-  const tempoPausaCurta = 0.1;
-  const tempoPausaLonga = 30;
-
   const [nomeBotao, setNomeBotao] = useState("START");
-
-  const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
 
   const somClique = useRef(new Audio(somBotao));
 
@@ -40,10 +39,6 @@ const PomodoroTimer = ({
   };
 
   useEffect(() => {
-    setTempoFormatoPomodoro(tempoCicloPomodoro + ":00");
-  }, [tempoCicloPomodoro]);
-
-  useEffect(() => {
     if (estaEmPausa === true) {
       setNomeBotao("SKIP");
     } else {
@@ -57,36 +52,9 @@ const PomodoroTimer = ({
     if (estaLigadoTimer === true || estaEmPausa === true) {
       if (timer.current === null) {
         rodarTimer();
-      }
+      } 
     }
   }, [estaLigadoTimer, estaEmPausa]);
-
-  useEffect(() => {
-    if (segundosRestante === 0) {
-      if (estaLigadoTimer === true) {
-        setEstaLigadoTimer(false);
-        if (contPomodoro % 4 === 0) {
-          setSegundosRestante(tempoPausaLonga * 60);
-        } else {
-          setSegundosRestante(tempoPausaCurta * 60);
-        }
-
-        setEstaEmPausa(true);
-      } else {
-        setEstaEmPausa(false);
-        setSegundosRestante(tempoCicloPomodoro * 60);
-        setContPomodoro((contPomodoro) => contPomodoro + 1);
-
-        setEstaLigadoTimer(true);
-      }
-    }
-
-    setTempoFormatoPomodoro(
-      String(Math.floor(segundosRestante / 60)).padStart(2, "0") +
-        ":" +
-        String(segundosRestante % 60).padStart(2, "0")
-    );
-  }, [segundosRestante]);
 
   return (
     <div className="container-fluid vh-100 py-4 main">

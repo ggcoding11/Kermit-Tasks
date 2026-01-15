@@ -18,10 +18,14 @@ const App = () => {
   const [contPomodoro, setContPomodoro] = useState(1);
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
   const [estaEmPausa, setEstaEmPausa] = useState(false);
-
+  const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
   const tempoCicloPomodoro = useRef(0.1);
-
+  const tempoPausaCurta = 0.1;
+  const tempoPausaLonga = 30;
   const timer = useRef(null);
+  const [segundosRestante, setSegundosRestante] = useState();
+
+  const [componentUsed, setComponentUsed] = useState(components[0].name);
 
   const rodarTimer = () => {
     timer.current = setInterval(() => {
@@ -33,9 +37,32 @@ const App = () => {
     setSegundosRestante(tempoCicloPomodoro.current * 60);
   }, []);
 
-  const [segundosRestante, setSegundosRestante] = useState();
+  useEffect(() => {
+    if (segundosRestante === 0) {
+      if (estaLigadoTimer === true) {
+        setEstaLigadoTimer(false);
+        if (contPomodoro % 4 === 0) {
+          setSegundosRestante(tempoPausaLonga * 60);
+        } else {
+          setSegundosRestante(tempoPausaCurta * 60);
+        }
 
-  const [componentUsed, setComponentUsed] = useState(components[0].name);
+        setEstaEmPausa(true);
+      } else {
+        setEstaEmPausa(false);
+        setSegundosRestante(tempoCicloPomodoro * 60);
+        setContPomodoro((contPomodoro) => contPomodoro + 1);
+
+        setEstaLigadoTimer(true);
+      }
+    }
+
+    setTempoFormatoPomodoro(
+      String(Math.floor(segundosRestante / 60)).padStart(2, "0") +
+        ":" +
+        String(segundosRestante % 60).padStart(2, "0")
+    );
+  }, [segundosRestante]);
 
   return (
     <div>
@@ -68,9 +95,13 @@ const App = () => {
           setEstaEmPausa={setEstaEmPausa}
           segundosRestante={segundosRestante}
           setSegundosRestante={setSegundosRestante}
-          tempoCicloPomodoro={tempoCicloPomodoro}
+          tempoCicloPomodoro={tempoCicloPomodoro.current}
           timer={timer}
           rodarTimer={rodarTimer}
+          tempoFormatoPomodoro={tempoFormatoPomodoro}
+          setTempoFormatoPomodoro={setTempoFormatoPomodoro}
+          tempoPausaCurta={tempoPausaCurta}
+          tempoPausaLonga={tempoPausaLonga}
         ></PomodoroTimer>
       )}
     </div>
