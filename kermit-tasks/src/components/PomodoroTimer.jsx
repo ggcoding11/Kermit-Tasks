@@ -39,6 +39,14 @@ const PomodoroTimer = ({
   };
 
   useEffect(() => {
+    console.log(
+      "Em pausa: ",
+      estaEmPausa,
+      "\n",
+      "Ligado timer: ",
+      estaLigadoTimer
+    );
+
     if (estaEmPausa === true) {
       setNomeBotao("SKIP");
     } else {
@@ -49,10 +57,14 @@ const PomodoroTimer = ({
       }
     }
 
-    if (estaLigadoTimer === true || estaEmPausa === true) {
-      if (timer.current === null) {
+    if (timer.current === null) {
+      if (estaLigadoTimer === true || estaEmPausa === true) {
         rodarTimer();
-      } 
+      }
+    } else {
+      if (estaLigadoTimer == false) {
+        clearInterval(timer.current);
+      }
     }
   }, [estaLigadoTimer, estaEmPausa]);
 

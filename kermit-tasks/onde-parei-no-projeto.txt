@@ -1,3 +1,2 @@
 - Conseguimos fazer rodar o timer mesmo fora do pomodoro
-- Agora preciso implementar a pausa corretamente
-- E quando passam a primeira pausa e o primeiro pomodoro, o programa n funciona mais!
+- A pausa até está rolando, mas quando eu despauso, o timer não continua!
