@@ -16,12 +16,13 @@ const App = () => {
   const [taskPomodoros, setTaskPomodoros] = useState("");
 
   const [contPomodoro, setContPomodoro] = useState(1);
+  const [nomeBotao, setNomeBotao] = useState("START");
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
   const [estaEmPausa, setEstaEmPausa] = useState(false);
   const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
   const tempoCicloPomodoro = useRef(0.1);
-  const tempoPausaCurta = 0.1;
-  const tempoPausaLonga = 30;
+  const tempoPausaCurta = useRef(0.1);
+  const tempoPausaLonga = useRef(30);
   const timer = useRef(null);
   const [segundosRestante, setSegundosRestante] = useState();
 
@@ -42,15 +43,15 @@ const App = () => {
       if (estaLigadoTimer === true) {
         setEstaLigadoTimer(false);
         if (contPomodoro % 4 === 0) {
-          setSegundosRestante(tempoPausaLonga * 60);
+          setSegundosRestante(tempoPausaLonga.current * 60);
         } else {
-          setSegundosRestante(tempoPausaCurta * 60);
+          setSegundosRestante(tempoPausaCurta.current * 60);
         }
 
         setEstaEmPausa(true);
       } else {
         setEstaEmPausa(false);
-        setSegundosRestante(tempoCicloPomodoro * 60);
+        setSegundosRestante(tempoCicloPomodoro.current * 60);
         setContPomodoro((contPomodoro) => contPomodoro + 1);
 
         setEstaLigadoTimer(true);
@@ -60,9 +61,39 @@ const App = () => {
     setTempoFormatoPomodoro(
       String(Math.floor(segundosRestante / 60)).padStart(2, "0") +
         ":" +
-        String(segundosRestante % 60).padStart(2, "0")
+        String(segundosRestante % 60).padStart(2, "0"),
     );
   }, [segundosRestante]);
+
+  useEffect(() => {
+    console.log(
+      "Em pausa: ",
+      estaEmPausa,
+      "\n",
+      "Ligado timer: ",
+      estaLigadoTimer,
+      "\n",
+    );
+
+    if (estaEmPausa === true) {
+      setNomeBotao("SKIP");
+    } else {
+      if (estaLigadoTimer === true) {
+        setNomeBotao("STOP");
+      } else {
+        setNomeBotao("START");
+      }
+    }
+
+    if (estaLigadoTimer === true || estaEmPausa === true) {
+      console.log("Entrou em timer ou em pausa!");
+      rodarTimer();
+    }
+
+    return () => {
+      clearInterval(timer.current);
+    };
+  }, [estaLigadoTimer, estaEmPausa]);
 
   return (
     <div>
@@ -88,20 +119,12 @@ const App = () => {
           componentUsed={componentUsed}
           setComponentUsed={setComponentUsed}
           contPomodoro={contPomodoro}
-          setContPomodoro={setContPomodoro}
           estaLigadoTimer={estaLigadoTimer}
           setEstaLigadoTimer={setEstaLigadoTimer}
           estaEmPausa={estaEmPausa}
-          setEstaEmPausa={setEstaEmPausa}
-          segundosRestante={segundosRestante}
           setSegundosRestante={setSegundosRestante}
-          tempoCicloPomodoro={tempoCicloPomodoro.current}
-          timer={timer}
-          rodarTimer={rodarTimer}
           tempoFormatoPomodoro={tempoFormatoPomodoro}
-          setTempoFormatoPomodoro={setTempoFormatoPomodoro}
-          tempoPausaCurta={tempoPausaCurta}
-          tempoPausaLonga={tempoPausaLonga}
+          nomeBotao={nomeBotao}
         ></PomodoroTimer>
       )}
     </div>

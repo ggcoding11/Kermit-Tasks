@@ -8,23 +8,13 @@ const PomodoroTimer = ({
   componentUsed,
   setComponentUsed,
   contPomodoro,
-  setContPomodoro,
   estaLigadoTimer,
   setEstaLigadoTimer,
   estaEmPausa,
-  setEstaEmPausa,
-  segundosRestante,
   setSegundosRestante,
-  tempoCicloPomodoro,
-  timer,
-  rodarTimer,
   tempoFormatoPomodoro,
-  setTempoFormatoPomodoro,
-  tempoPausaCurta,
-  tempoPausaLonga,
+  nomeBotao,
 }) => {
-  const [nomeBotao, setNomeBotao] = useState("START");
-
   const somClique = useRef(new Audio(somBotao));
 
   const clicarBotaoStartStop = () => {
@@ -37,36 +27,6 @@ const PomodoroTimer = ({
       setSegundosRestante(0);
     }
   };
-
-  useEffect(() => {
-    console.log(
-      "Em pausa: ",
-      estaEmPausa,
-      "\n",
-      "Ligado timer: ",
-      estaLigadoTimer
-    );
-
-    if (estaEmPausa === true) {
-      setNomeBotao("SKIP");
-    } else {
-      if (estaLigadoTimer === true) {
-        setNomeBotao("STOP");
-      } else {
-        setNomeBotao("START");
-      }
-    }
-
-    if (timer.current === null) {
-      if (estaLigadoTimer === true || estaEmPausa === true) {
-        rodarTimer();
-      }
-    } else {
-      if (estaLigadoTimer == false) {
-        clearInterval(timer.current);
-      }
-    }
-  }, [estaLigadoTimer, estaEmPausa]);
 
   return (
     <div className="container-fluid vh-100 py-4 main">

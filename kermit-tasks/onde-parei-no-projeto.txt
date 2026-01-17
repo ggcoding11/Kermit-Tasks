@@ -1,2 +1,1 @@
-- Conseguimos fazer rodar o timer mesmo fora do pomodoro
-- A pausa até está rolando, mas quando eu despauso, o timer não continua!
+- Implementar o lance das tarefas serem concluídas com o passar dos pomodoros
