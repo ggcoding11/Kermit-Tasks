@@ -1,1 +1,3 @@
-- Implementar o lance das tarefas serem concluídas com o passar dos pomodoros
+- Fazer um CSS para quando eu selecionar as tasks (fiz um molde meio ruim aqui, só pra ter uma ideia)
+- Fazer o esquema de toogle: se eu clicar na tarefa já selecionada, ela tira a seleção
+- Continuar o resto da funcionalidade: mesclar com o pomodoro e o esquema de concluir a task com o passar do timer

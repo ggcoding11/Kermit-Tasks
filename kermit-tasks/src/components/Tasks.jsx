@@ -15,9 +15,10 @@ const Tasks = ({
   taskPomodoros,
   setTaskPomodoros,
 }) => {
+  const [taskSelected, setTaskSelected] = useState(null);
+
   const [taskNameEdited, setTaskNameEdited] = useState("");
   const [taskPomodorosEdited, setTaskPomodorosEdited] = useState("");
-
   const [taskEdited, setTaskEdited] = useState(null);
 
   const [showPlaceholder, setShowPlaceholder] = useState(null);
@@ -157,15 +158,30 @@ const Tasks = ({
                 {taskList.map((item) => (
                   <div
                     key={item.id}
-                    className="task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
-                    onClick={() => checkTask(item.id)}
+                    className={
+                      taskSelected === item.id
+                        ? "selected task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
+                        : "task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
+                    }
+                    onClick={() => {
+                      setTaskSelected(item.id);
+                    }}
                   >
-                    <div className="d-flex gap-2">
-                      {item.completed === false ? (
-                        <i className="bi bi-circle"></i>
-                      ) : (
-                        <i className="bi bi-check-circle-fill"></i>
-                      )}
+                    <div className="d-flex align-items-center gap-2">
+                      <div
+                        className="task-status"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          checkTask(item.id);
+                        }}
+                      >
+                        {item.completed === false ? (
+                          <i className="bi bi-circle"></i>
+                        ) : (
+                          <i className="bi bi-check-circle-fill"></i>
+                        )}
+                      </div>
+
                       <div className="task-name text-break fw-bold">
                         {item.name}
                       </div>
@@ -184,7 +200,7 @@ const Tasks = ({
                         onClick={() => {
                           setTaskEdited(item.id);
                           setTaskNameEdited(item.name);
-                          setPomodoroEdited(item.pomodoros);
+                          setTaskPomodorosEdited(item.pomodoros);
                         }}
                       >
                         <i className="bi bi-pencil-square"></i>
