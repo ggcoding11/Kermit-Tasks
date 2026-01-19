@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, act } from "react";
 import somBotao from "../assets/sounds/somBotao.mp3";
 import ComponentSelector from "./ComponentSelector";
 import "./PomodoroTimer.css";
@@ -30,6 +30,22 @@ const PomodoroTimer = ({
     }
   };
 
+  const [actualTask, setActualTask] = useState({});
+
+  useEffect(() => {
+    if (taskSelected != null) {
+      setActualTask(
+        taskList
+          .filter((item) => {
+            if (item.id === taskSelected) {
+              return item;
+            }
+          })
+          .find(() => true),
+      );
+    }
+  }, []);
+
   return (
     <div className="container-fluid vh-100 py-4 main">
       <div className="row mb-3">
@@ -42,16 +58,11 @@ const PomodoroTimer = ({
       </div>
 
       <div className="d-flex justify-content-center mb-2">
-        <div className="card p-2">
-          {taskSelected &&
-            taskList
-              .filter((item) => {
-                if (item.id === taskSelected) {
-                  return item;
-                }
-              })
-              .find(() => true)["name"]}
-        </div>
+        {taskSelected != null && (
+          <div className="card p-2">
+            <p>{actualTask.name}</p>
+          </div>
+        )}
       </div>
 
       <div className="d-flex justify-content-center gap-3 mb-4">

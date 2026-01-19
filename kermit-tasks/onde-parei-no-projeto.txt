@@ -1,1 +1,1 @@
-- Fazer com que os dados da task selecionada apareçam no timer do Pomodoro
+- Ver uma forma melhor de organizar os dados da task selecionada no Pomodoro
