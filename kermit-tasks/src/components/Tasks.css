@@ -17,5 +17,5 @@
 }
 
 .tasks-list .selected {
-  border: 5px solid red !important;
+  border: 2px solid black !important;
 }

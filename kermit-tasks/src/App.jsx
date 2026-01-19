@@ -15,6 +15,8 @@ const App = () => {
   const [taskName, setTaskName] = useState("");
   const [taskPomodoros, setTaskPomodoros] = useState("");
 
+  const [taskSelected, setTaskSelected] = useState(null);
+
   const [contPomodoro, setContPomodoro] = useState(1);
   const [nomeBotao, setNomeBotao] = useState("START");
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
@@ -111,6 +113,8 @@ const App = () => {
           setTaskName={setTaskName}
           taskPomodoros={taskPomodoros}
           setTaskPomodoros={setTaskPomodoros}
+          taskSelected={taskSelected}
+          setTaskSelected={setTaskSelected}
         ></Tasks>
       )}
       {componentUsed === components[1].name && (
@@ -125,6 +129,8 @@ const App = () => {
           setSegundosRestante={setSegundosRestante}
           tempoFormatoPomodoro={tempoFormatoPomodoro}
           nomeBotao={nomeBotao}
+          taskSelected={taskSelected}
+          taskList={taskList}
         ></PomodoroTimer>
       )}
     </div>

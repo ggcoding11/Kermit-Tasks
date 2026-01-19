@@ -14,6 +14,8 @@ const PomodoroTimer = ({
   setSegundosRestante,
   tempoFormatoPomodoro,
   nomeBotao,
+  taskSelected,
+  taskList,
 }) => {
   const somClique = useRef(new Audio(somBotao));
 
@@ -36,6 +38,19 @@ const PomodoroTimer = ({
             <span>⏰</span>
             Pomodoro Timer
           </h1>
+        </div>
+      </div>
+
+      <div className="d-flex justify-content-center mb-2">
+        <div className="card p-2">
+          {taskSelected &&
+            taskList
+              .filter((item) => {
+                if (item.id === taskSelected) {
+                  return item;
+                }
+              })
+              .find(() => true)["name"]}
         </div>
       </div>
 

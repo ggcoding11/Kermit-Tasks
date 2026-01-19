@@ -14,9 +14,9 @@ const Tasks = ({
   setTaskName,
   taskPomodoros,
   setTaskPomodoros,
+  taskSelected,
+  setTaskSelected,
 }) => {
-  const [taskSelected, setTaskSelected] = useState(null);
-
   const [taskNameEdited, setTaskNameEdited] = useState("");
   const [taskPomodorosEdited, setTaskPomodorosEdited] = useState("");
   const [taskEdited, setTaskEdited] = useState(null);
@@ -159,12 +159,15 @@ const Tasks = ({
                   <div
                     key={item.id}
                     className={
-                      taskSelected === item.id
-                        ? "selected task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
-                        : "task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3"
+                      "task d-flex justify-content-between align-items-center border border-secondary rounded-4 w-100 gap-4 p-2 mt-3 " +
+                      (item.id === taskSelected && "selected")
                     }
                     onClick={() => {
-                      setTaskSelected(item.id);
+                      if (item.id === taskSelected) {
+                        setTaskSelected(null);
+                      } else {
+                        setTaskSelected(item.id);
+                      }
                     }}
                   >
                     <div className="d-flex align-items-center gap-2">
