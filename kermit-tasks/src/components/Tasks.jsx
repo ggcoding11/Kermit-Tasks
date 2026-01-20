@@ -41,6 +41,7 @@ const Tasks = ({
         id: taskIdAtual.current++,
         name: taskName,
         pomodoros: taskPomodoros,
+        count: 0,
         completed: false,
       },
     ]);
@@ -185,7 +186,13 @@ const Tasks = ({
                         )}
                       </div>
 
-                      <div className="task-name text-break fw-bold">
+                      <div
+                        className={
+                          "task-name text-break fw-bold " +
+                          (item.completed === true &&
+                            "text-decoration-line-through")
+                        }
+                      >
                         {item.name}
                       </div>
                     </div>
@@ -218,7 +225,7 @@ const Tasks = ({
 
                       <div className="bg-secondary p-1 rounded-circle">
                         <span className="text-white fw-bold">
-                          0/{item.pomodoros}
+                          {item.count}/{item.pomodoros}
                         </span>
                       </div>
                     </div>

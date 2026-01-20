@@ -17,22 +17,6 @@ const PomodoroTimer = ({
   taskSelected,
   taskList,
 }) => {
-  const [actualTask, setActualTask] = useState({});
-
-  useEffect(() => {
-    if (taskSelected != null) {
-      setActualTask(
-        taskList
-          .filter((item) => {
-            if (item.id === taskSelected) {
-              return item;
-            }
-          })
-          .find(() => true),
-      );
-    }
-  }, []);
-
   const somClique = useRef(new Audio(somBotao));
 
   const clicarBotaoStartStop = () => {
@@ -56,20 +40,31 @@ const PomodoroTimer = ({
           </h1>
         </div>
       </div>
-
       <div className="d-flex justify-content-center">
-        {taskSelected != null && (
-          <div className="actual-task d-flex justify-content-between align-items-center bg-light border border-secondary border-2 rounded p-2 mb-4">
-            <div className="fw-bold">{actualTask.name}</div>
-            <div className="bg-secondary p-1 rounded-circle">
-              <span className="text-white fw-bold">
-                0/{actualTask.pomodoros}
-              </span>
-            </div>
-          </div>
-        )}
+        {taskSelected != null &&
+          taskList
+            .filter((task) => task.id === taskSelected)
+            .map((task) => (
+              <div
+                key={task.id}
+                className="actual-task d-flex justify-content-between align-items-center bg-light border border-secondary border-2 rounded p-2 mb-4"
+              >
+                <div
+                  className={
+                    "fw-bold " +
+                    (task.completed === true && "text-decoration-line-through")
+                  }
+                >
+                  {task.name}
+                </div>
+                <div className="bg-secondary p-1 rounded-circle">
+                  <span className="text-white fw-bold">
+                    {task.count}/{task.pomodoros}
+                  </span>
+                </div>
+              </div>
+            ))}
       </div>
-
       <div className="d-flex justify-content-center gap-3 mb-4">
         <ComponentSelector
           components={components}
@@ -77,7 +72,6 @@ const PomodoroTimer = ({
           setComponentUsed={setComponentUsed}
         ></ComponentSelector>
       </div>
-
       <div className="row">
         <div className="col-12 d-flex justify-content-center">
           <div
@@ -95,13 +89,11 @@ const PomodoroTimer = ({
           </div>
         </div>
       </div>
-
       <div className="row mt-3">
         <div className="col-12 d-flex justify-content-center align-items-center">
           <span className="text-white fw-bold">#{contPomodoro}</span>
         </div>
       </div>
-
       <div className="row row-buttons mt-4">
         <div className="col-12 d-flex justify-content-center gap-2">
           <button
