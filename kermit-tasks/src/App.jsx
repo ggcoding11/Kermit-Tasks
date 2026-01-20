@@ -99,8 +99,6 @@ const App = () => {
 
   return (
     <div>
-      {segundosRestante}
-
       {componentUsed === components[0].name && (
         <Tasks
           components={components}

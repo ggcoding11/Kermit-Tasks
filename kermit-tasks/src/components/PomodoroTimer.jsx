@@ -17,19 +17,6 @@ const PomodoroTimer = ({
   taskSelected,
   taskList,
 }) => {
-  const somClique = useRef(new Audio(somBotao));
-
-  const clicarBotaoStartStop = () => {
-    somClique.current.currentTime = 0;
-    somClique.current.play();
-
-    if (estaEmPausa === false) {
-      setEstaLigadoTimer(!estaLigadoTimer);
-    } else {
-      setSegundosRestante(0);
-    }
-  };
-
   const [actualTask, setActualTask] = useState({});
 
   useEffect(() => {
@@ -46,8 +33,21 @@ const PomodoroTimer = ({
     }
   }, []);
 
+  const somClique = useRef(new Audio(somBotao));
+
+  const clicarBotaoStartStop = () => {
+    somClique.current.currentTime = 0;
+    somClique.current.play();
+
+    if (estaEmPausa === false) {
+      setEstaLigadoTimer(!estaLigadoTimer);
+    } else {
+      setSegundosRestante(0);
+    }
+  };
+
   return (
-    <div className="container-fluid vh-100 py-4 main">
+    <div className="container-fluid min-vh-100 py-4 main">
       <div className="row mb-3">
         <div className="col-12 text-center">
           <h1 className="text-white fw-bold">
@@ -57,10 +57,15 @@ const PomodoroTimer = ({
         </div>
       </div>
 
-      <div className="d-flex justify-content-center mb-2">
+      <div className="d-flex justify-content-center">
         {taskSelected != null && (
-          <div className="card p-2">
-            <p>{actualTask.name}</p>
+          <div className="actual-task d-flex justify-content-between align-items-center bg-light border border-secondary border-2 rounded p-2 mb-4">
+            <div className="fw-bold">{actualTask.name}</div>
+            <div className="bg-secondary p-1 rounded-circle">
+              <span className="text-white fw-bold">
+                0/{actualTask.pomodoros}
+              </span>
+            </div>
           </div>
         )}
       </div>

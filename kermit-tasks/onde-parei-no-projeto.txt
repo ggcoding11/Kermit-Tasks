@@ -1,1 +1,1 @@
-- Ver uma forma melhor de organizar os dados da task selecionada no Pomodoro
+- Ver uma forma de fazer com que o passar dos pomodoros atualize a contagem na tarefa

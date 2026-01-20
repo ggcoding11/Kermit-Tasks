@@ -1,16 +1,15 @@
-/* Geral */
 .main {
   background-color: #302957;
 }
 
-/* Geral */
+.actual-task {
+  width: 180px;
+}
 
-/* Botões de Timer */
 .row-buttons .btn {
   background-color: #423a6b;
 }
 
-/* Botões de Timer */
 .row-buttons.btn {
   font-size: 0.8em;
 }
@@ -18,9 +17,7 @@
 .row-buttons .btn:hover {
   background-color: #605a8b;
 }
-/* Botões de Timer */
 
-/* Timer */
 .container-timer {
   height: 250px;
   width: 250px;
@@ -47,5 +44,3 @@
 .em-pausa {
   background-color: rgb(41, 54, 112);
 }
-
-/* Timer */
