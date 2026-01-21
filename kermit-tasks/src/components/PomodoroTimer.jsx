@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, act } from "react";
+import { useEffect, useState, useRef } from "react";
 import somBotao from "../assets/sounds/somBotao.mp3";
 import ComponentSelector from "./ComponentSelector";
 import "./PomodoroTimer.css";
@@ -42,28 +42,31 @@ const PomodoroTimer = ({
       </div>
       <div className="d-flex justify-content-center">
         {taskSelected != null &&
-          taskList
-            .filter((task) => task.id === taskSelected)
-            .map((task) => (
-              <div
-                key={task.id}
-                className="actual-task d-flex justify-content-between align-items-center bg-light border border-secondary border-2 rounded p-2 mb-4"
-              >
+          taskList.map((task) => {
+            if (task.id === taskSelected) {
+              return (
                 <div
-                  className={
-                    "fw-bold " +
-                    (task.completed === true && "text-decoration-line-through")
-                  }
+                  key={task.id}
+                  className="actual-task d-flex justify-content-between align-items-center bg-light border border-secondary border-2 rounded p-2 mb-4"
                 >
-                  {task.name}
+                  <div
+                    className={
+                      "fw-bold " +
+                      (task.completed === true &&
+                        "text-decoration-line-through")
+                    }
+                  >
+                    {task.name}
+                  </div>
+                  <div className="bg-secondary p-1 rounded-circle">
+                    <span className="text-white fw-bold">
+                      {task.count}/{task.pomodoros}
+                    </span>
+                  </div>
                 </div>
-                <div className="bg-secondary p-1 rounded-circle">
-                  <span className="text-white fw-bold">
-                    {task.count}/{task.pomodoros}
-                  </span>
-                </div>
-              </div>
-            ))}
+              );
+            }
+          })}
       </div>
       <div className="d-flex justify-content-center gap-3 mb-4">
         <ComponentSelector

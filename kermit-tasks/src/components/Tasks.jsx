@@ -24,8 +24,6 @@ const Tasks = ({
   const [showPlaceholder, setShowPlaceholder] = useState(null);
 
   useEffect(() => {
-    console.log(taskList);
-
     if (taskList.length != 0) {
       setShowPlaceholder(false);
     } else {
@@ -46,7 +44,6 @@ const Tasks = ({
       },
     ]);
 
-    console.log(taskList);
     setTaskName("");
     setTaskPomodoros("");
   };
@@ -54,36 +51,34 @@ const Tasks = ({
   const editTask = (e) => {
     e.preventDefault();
 
-    const novoArray = taskList.map((item) => {
-      if (item.id === taskEdited) {
-        item.name = taskNameEdited;
-        item.pomodoros = taskPomodorosEdited;
-      }
+    setTaskList(
+      taskList.map((item) => {
+        if (item.id === taskEdited) {
+          item.name = taskNameEdited;
+          item.pomodoros = taskPomodorosEdited;
+        }
 
-      return item;
-    });
-
-    setTaskList(novoArray);
+        return item;
+      }),
+    );
 
     alert("The task was sucessfully edited!");
   };
 
   const deleteTask = (taskId) => {
-    const novoArray = taskList.filter((item) => item.id != taskId);
-
-    setTaskList(novoArray);
+    setTaskList(taskList.filter((item) => item.id != taskId));
   };
 
   const checkTask = (taskId) => {
-    const novoArray = taskList.map((item) => {
-      if (item.id === taskId) {
-        item.completed = !item.completed;
-      }
+    setTaskList(
+      taskList.map((item) => {
+        if (item.id === taskId) {
+          item.completed = !item.completed;
+        }
 
-      return item;
-    });
-
-    setTaskList(novoArray);
+        return item;
+      }),
+    );
   };
 
   return (

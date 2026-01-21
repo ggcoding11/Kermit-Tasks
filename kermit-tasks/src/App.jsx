@@ -56,6 +56,22 @@ const App = () => {
         setSegundosRestante(tempoCicloPomodoro.current * 60);
         setContPomodoro((contPomodoro) => contPomodoro + 1);
 
+        if (taskSelected != null) {
+          setTaskList(
+            taskList.map((task) => {
+              if (task.id === taskSelected) {
+                task.count += 1;
+
+                if (task.count == task.pomodoros) {
+                  task.completed = true;
+                }
+              }
+
+              return task;
+            }),
+          );
+        }
+
         setEstaLigadoTimer(true);
       }
     }
@@ -68,15 +84,6 @@ const App = () => {
   }, [segundosRestante]);
 
   useEffect(() => {
-    console.log(
-      "Em pausa: ",
-      estaEmPausa,
-      "\n",
-      "Ligado timer: ",
-      estaLigadoTimer,
-      "\n",
-    );
-
     if (estaEmPausa === true) {
       setNomeBotao("SKIP");
     } else {
@@ -88,7 +95,6 @@ const App = () => {
     }
 
     if (estaLigadoTimer === true || estaEmPausa === true) {
-      console.log("Entrou em timer ou em pausa!");
       rodarTimer();
     }
 
