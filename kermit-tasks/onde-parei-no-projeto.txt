@@ -1,1 +1,4 @@
-- Ver uma forma de fazer com que o passar dos pomodoros atualize a contagem na tarefa
+- Testar se tudo está funcionando
+- Fazer merge pra main
+- Ver os próximos passos
+- Criar a próxima branch e continuar
