@@ -36,6 +36,13 @@ const App = () => {
     }, 1000);
   };
 
+  const resetarTimer = () => {
+    setSegundosRestante(tempoCicloPomodoro.current * 60);
+    setEstaLigadoTimer(false);
+    setEstaEmPausa(false);
+    setContPomodoro(1);
+  };
+
   useEffect(() => {
     setSegundosRestante(tempoCicloPomodoro.current * 60);
   }, []);
@@ -135,6 +142,7 @@ const App = () => {
           nomeBotao={nomeBotao}
           taskSelected={taskSelected}
           taskList={taskList}
+          resetarTimer={resetarTimer}
         ></PomodoroTimer>
       )}
     </div>

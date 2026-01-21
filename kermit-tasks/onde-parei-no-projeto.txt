@@ -1,4 +1,0 @@
-- Testar se tudo está funcionando
-- Fazer merge pra main
-- Ver os próximos passos
-- Criar a próxima branch e continuar

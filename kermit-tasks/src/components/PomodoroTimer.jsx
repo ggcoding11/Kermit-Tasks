@@ -16,6 +16,7 @@ const PomodoroTimer = ({
   nomeBotao,
   taskSelected,
   taskList,
+  resetarTimer,
 }) => {
   const somClique = useRef(new Audio(somBotao));
 
@@ -94,7 +95,16 @@ const PomodoroTimer = ({
       </div>
       <div className="row mt-3">
         <div className="col-12 d-flex justify-content-center align-items-center">
-          <span className="text-white fw-bold">#{contPomodoro}</span>
+          <span
+            className="text-white fw-bold"
+            onClick={() => {
+              if (confirm("Wanna reset the count?")) {
+                resetarTimer();
+              }
+            }}
+          >
+            #{contPomodoro}
+          </span>
         </div>
       </div>
       <div className="row row-buttons mt-4">
