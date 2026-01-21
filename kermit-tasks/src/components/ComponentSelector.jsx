@@ -1,4 +1,5 @@
 import React from "react";
+import "./ComponentSelector.css"
 
 const ComponentSelector = ({ components, componentUsed, setComponentUsed }) => {
   return (
@@ -19,6 +20,10 @@ const ComponentSelector = ({ components, componentUsed, setComponentUsed }) => {
           <label className="btn btn-outline-success" htmlFor={item.name}>
             {item.name}
           </label>
+
+          <div>
+            <button className="botao">{item.name}</button>
+          </div>
         </div>
       ))}
     </>
