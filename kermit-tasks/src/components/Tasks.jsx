@@ -93,7 +93,7 @@ const Tasks = ({
             <h1 className="title">Kermit Tasks</h1>
           </header>
 
-          <section className="d-flex justify-content-center flex-column align-items-center mt-4">
+          <section className="d-flex justify-content-center flex-column align-items-center mt-2">
             <div className="component-selection d-flex justify-content-center gap-3 w-100 mb-4">
               <ComponentSelector
                 components={components}
@@ -142,7 +142,7 @@ const Tasks = ({
                 </div>
 
                 <div className="d-flex justify-content-center">
-                  <button type="submit" className="btn btn-primary w-100">
+                  <button type="submit" className="btn-3d add-task">
                     Add task
                   </button>
                 </div>
