@@ -32,7 +32,7 @@ const PomodoroTimer = ({
   };
 
   return (
-    <div className="container-fluid min-vh-100 py-4 main">
+    <div className="container-fluid d-flex flex-column align-items-center justify-content-center min-vh-100 py-4 main">
       <div className="row mb-3">
         <div className="col-12 text-center">
           <h1 className="text-white fw-bold">
