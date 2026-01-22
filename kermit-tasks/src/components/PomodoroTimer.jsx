@@ -1,12 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import somBotao from "../assets/sounds/somBotao.mp3";
-import ComponentSelector from "./ComponentSelector";
 import "./PomodoroTimer.css";
 
 const PomodoroTimer = ({
-  components,
-  componentUsed,
-  setComponentUsed,
   contPomodoro,
   estaLigadoTimer,
   setEstaLigadoTimer,
@@ -17,6 +13,7 @@ const PomodoroTimer = ({
   taskSelected,
   taskList,
   resetarTimer,
+  ComponentSelector,
 }) => {
   const somClique = useRef(new Audio(somBotao));
 
@@ -70,11 +67,7 @@ const PomodoroTimer = ({
           })}
       </div>
       <div className="d-flex justify-content-center gap-3 mb-4">
-        <ComponentSelector
-          components={components}
-          componentUsed={componentUsed}
-          setComponentUsed={setComponentUsed}
-        ></ComponentSelector>
+        {ComponentSelector}
       </div>
       <div className="row">
         <div className="col-12 d-flex justify-content-center">
@@ -96,7 +89,7 @@ const PomodoroTimer = ({
       <div className="row mt-3">
         <div className="col-12 d-flex justify-content-center align-items-center">
           <span
-            className="text-white fw-bold"
+            className="pomodoro-count text-white fw-bold"
             onClick={() => {
               if (confirm("Wanna reset the count?")) {
                 resetarTimer();

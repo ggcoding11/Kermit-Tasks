@@ -1,12 +1,8 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import ComponentSelector from "./ComponentSelector";
 import "./Tasks.css";
 
 const Tasks = ({
-  components,
-  componentUsed,
-  setComponentUsed,
   taskList,
   setTaskList,
   taskIdAtual,
@@ -16,6 +12,7 @@ const Tasks = ({
   setTaskPomodoros,
   taskSelected,
   setTaskSelected,
+  ComponentSelector,
 }) => {
   const [taskNameEdited, setTaskNameEdited] = useState("");
   const [taskPomodorosEdited, setTaskPomodorosEdited] = useState("");
@@ -95,11 +92,7 @@ const Tasks = ({
 
           <section className="d-flex justify-content-center flex-column align-items-center mt-2">
             <div className="component-selection d-flex justify-content-center gap-3 w-100 mb-4">
-              <ComponentSelector
-                components={components}
-                componentUsed={componentUsed}
-                setComponentUsed={setComponentUsed}
-              ></ComponentSelector>
+              {ComponentSelector}
             </div>
 
             <div className="form-group w-100">

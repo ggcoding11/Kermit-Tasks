@@ -1,1 +1,2 @@
-- Organizar melhor o css dos botões
+- Organizar melhor o CSS dos botões
+- Padronizar esse tipo de botão para todos os botões do site!

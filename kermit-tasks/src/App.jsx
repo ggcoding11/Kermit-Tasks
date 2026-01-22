@@ -1,7 +1,8 @@
 import React, { use } from "react";
 import { useState, useRef, useEffect } from "react";
-import Tasks from "./components/Tasks";
-import PomodoroTimer from "./components/PomodoroTimer";
+import Tasks from "./components/Tasks.jsx";
+import PomodoroTimer from "./components/PomodoroTimer.jsx";
+import ComponentSelector from "./components/ComponentSelector.jsx";
 import "./App.css";
 
 const components = [
@@ -114,9 +115,6 @@ const App = () => {
     <div>
       {componentUsed === components[0].name && (
         <Tasks
-          components={components}
-          componentUsed={componentUsed}
-          setComponentUsed={setComponentUsed}
           taskList={taskList}
           setTaskList={setTaskList}
           taskIdAtual={taskIdAtual}
@@ -126,13 +124,17 @@ const App = () => {
           setTaskPomodoros={setTaskPomodoros}
           taskSelected={taskSelected}
           setTaskSelected={setTaskSelected}
+          ComponentSelector={
+            <ComponentSelector
+              components={components}
+              componentUsed={componentUsed}
+              setComponentUsed={setComponentUsed}
+            ></ComponentSelector>
+          }
         ></Tasks>
       )}
       {componentUsed === components[1].name && (
         <PomodoroTimer
-          components={components}
-          componentUsed={componentUsed}
-          setComponentUsed={setComponentUsed}
           contPomodoro={contPomodoro}
           estaLigadoTimer={estaLigadoTimer}
           setEstaLigadoTimer={setEstaLigadoTimer}
@@ -143,6 +145,13 @@ const App = () => {
           taskSelected={taskSelected}
           taskList={taskList}
           resetarTimer={resetarTimer}
+          ComponentSelector={
+            <ComponentSelector
+              components={components}
+              componentUsed={componentUsed}
+              setComponentUsed={setComponentUsed}
+            ></ComponentSelector>
+          }
         ></PomodoroTimer>
       )}
     </div>

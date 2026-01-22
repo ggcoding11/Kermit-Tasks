@@ -44,3 +44,7 @@
 .em-pausa {
   background-color: rgb(41, 54, 112);
 }
+
+.pomodoro-count {
+  cursor: pointer;
+}
