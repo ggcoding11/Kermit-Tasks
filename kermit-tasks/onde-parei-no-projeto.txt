@@ -1,2 +1,2 @@
-- Organizar melhor o CSS dos botões
-- Padronizar esse tipo de botão para todos os botões do site!
+- Continuar pesquisando sobre como as notificações funcionam em JavaScript
+- Parei nos testes no meu programa "Testes de código"

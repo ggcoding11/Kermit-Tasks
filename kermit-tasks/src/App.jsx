@@ -24,15 +24,15 @@ const App = () => {
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
   const [estaEmPausa, setEstaEmPausa] = useState(false);
   const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
-  const tempoCicloPomodoro = useRef(0.1);
-  const tempoPausaCurta = useRef(0.1);
+  const tempoCicloPomodoro = useRef(25);
+  const tempoPausaCurta = useRef(5);
   const tempoPausaLonga = useRef(30);
   const timer = useRef(null);
   const [segundosRestante, setSegundosRestante] = useState();
 
   const [componentUsed, setComponentUsed] = useState(components[0].name);
 
-  const somDoTimer = useRef(new Audio(somTimer));
+  const timerSound = useRef(new Audio(somTimer));
 
   const rodarTimer = () => {
     timer.current = setInterval(() => {
@@ -45,6 +45,11 @@ const App = () => {
     setEstaLigadoTimer(false);
     setEstaEmPausa(false);
     setContPomodoro(1);
+  };
+
+  const tocarSom = () => {
+    timerSound.current.currentTime = 4;
+    timerSound.current.play();
   };
 
   useEffect(() => {
@@ -63,9 +68,7 @@ const App = () => {
 
         setEstaEmPausa(true);
 
-        somDoTimer.currentTime = 3;
-        somDoTimer.duration = 4;
-        somDoTimer.play();
+        tocarSom();
       } else {
         setEstaEmPausa(false);
         setSegundosRestante(tempoCicloPomodoro.current * 60);
@@ -88,6 +91,8 @@ const App = () => {
         }
 
         setEstaLigadoTimer(true);
+
+        tocarSom();
       }
     }
 

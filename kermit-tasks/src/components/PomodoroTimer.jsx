@@ -15,11 +15,11 @@ const PomodoroTimer = ({
   resetarTimer,
   ComponentSelector,
 }) => {
-  const somClique = useRef(new Audio(somBotao));
+  const clickSound = useRef(new Audio(somBotao));
 
   const clicarBotaoStartStop = () => {
-    somClique.current.currentTime = 0;
-    somClique.current.play();
+    clickSound.current.currentTime = 0;
+    clickSound.current.play();
 
     if (estaEmPausa === false) {
       setEstaLigadoTimer(!estaLigadoTimer);
