@@ -4,11 +4,12 @@
   all: unset;
   border-radius: 8px;
   padding: 10px;
+  letter-spacing: 1.2px;
   background: #529c70;
   background: linear-gradient(
     90deg,
     rgba(82, 156, 112, 1) 50%,
-    rgb(62, 192, 99) 100%
+    rgb(54, 167, 86) 100%
   );
   color: white;
   font-family: "Special Gothic Condensed One";
@@ -16,6 +17,7 @@
 }
 
 .btn-3d:active {
+  transition: all 0.1s;
   transform: scale(0.98) translateY(3px);
   box-shadow: 0px 4px 0px rgb(52, 126, 68);
 }
@@ -35,6 +37,5 @@
 }
 
 .add-task:active {
-  transform: scale(0.98) translateY(3px);
   box-shadow: 0px 4px 0px rgb(30, 110, 202);
 }
