@@ -1,5 +1,4 @@
 import React from "react";
-import "./ComponentSelector.css";
 
 const ComponentSelector = ({ components, componentUsed, setComponentUsed }) => {
   return (
@@ -8,7 +7,10 @@ const ComponentSelector = ({ components, componentUsed, setComponentUsed }) => {
         <div key={item.id}>
           <button
             onClick={() => setComponentUsed(item.name)}
-            className={"btn-3d " + (componentUsed == item.name && "checked")}
+            className={
+              "btn-3d selector " +
+              (componentUsed == item.name && "checked")
+            }
           >
             {item.name}
           </button>

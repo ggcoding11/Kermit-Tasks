@@ -4,6 +4,7 @@ import Tasks from "./components/Tasks.jsx";
 import PomodoroTimer from "./components/PomodoroTimer.jsx";
 import ComponentSelector from "./components/ComponentSelector.jsx";
 import "./App.css";
+import somTimer from "./assets/sounds/somTimer.mp3";
 
 const components = [
   { id: 0, name: "Tasks" },
@@ -30,6 +31,8 @@ const App = () => {
   const [segundosRestante, setSegundosRestante] = useState();
 
   const [componentUsed, setComponentUsed] = useState(components[0].name);
+
+  const somDoTimer = useRef(new Audio(somTimer));
 
   const rodarTimer = () => {
     timer.current = setInterval(() => {
@@ -59,6 +62,10 @@ const App = () => {
         }
 
         setEstaEmPausa(true);
+
+        somDoTimer.currentTime = 3;
+        somDoTimer.duration = 4;
+        somDoTimer.play();
       } else {
         setEstaEmPausa(false);
         setSegundosRestante(tempoCicloPomodoro.current * 60);
@@ -93,12 +100,12 @@ const App = () => {
 
   useEffect(() => {
     if (estaEmPausa === true) {
-      setNomeBotao("SKIP");
+      setNomeBotao("Skip");
     } else {
       if (estaLigadoTimer === true) {
-        setNomeBotao("STOP");
+        setNomeBotao("Stop");
       } else {
-        setNomeBotao("START");
+        setNomeBotao("Start");
       }
     }
 

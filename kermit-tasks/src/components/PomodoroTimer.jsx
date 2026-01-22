@@ -104,7 +104,7 @@ const PomodoroTimer = ({
         <div className="col-12 d-flex justify-content-center gap-2">
           <button
             onClick={clicarBotaoStartStop}
-            className="btn text-white fw-semibold"
+            className="btn-3d pomodoro-button"
             id="start-stop"
           >
             {nomeBotao}
