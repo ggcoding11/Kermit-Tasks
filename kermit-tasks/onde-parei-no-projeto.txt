@@ -1,2 +1,2 @@
-- Ver como o Axios funciona e como fazer as requisições HTTP com ele.
-- Ver comon colocar as particulas quando eu terminar todas as tasks
+- Ver como funciona Promises, Async/Await em JavaScript
+- Ver como colocar as particulas quando eu terminar todas as tasks
