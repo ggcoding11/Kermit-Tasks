@@ -1,2 +1,2 @@
-- Continuar pesquisando sobre como as notificações funcionam em JavaScript
-- Parei nos testes no meu programa "Testes de código"
+- Ver como o Axios funciona e como fazer as requisições HTTP com ele.
+- Ver comon colocar as particulas quando eu terminar todas as tasks

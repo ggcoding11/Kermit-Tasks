@@ -24,8 +24,8 @@ const App = () => {
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
   const [estaEmPausa, setEstaEmPausa] = useState(false);
   const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
-  const tempoCicloPomodoro = useRef(25);
-  const tempoPausaCurta = useRef(5);
+  const tempoCicloPomodoro = useRef(0.1);
+  const tempoPausaCurta = useRef(0.1);
   const tempoPausaLonga = useRef(30);
   const timer = useRef(null);
   const [segundosRestante, setSegundosRestante] = useState();
@@ -33,6 +33,8 @@ const App = () => {
   const [componentUsed, setComponentUsed] = useState(components[0].name);
 
   const timerSound = useRef(new Audio(somTimer));
+
+  const notificationPermission = useRef(null);
 
   const rodarTimer = () => {
     timer.current = setInterval(() => {
@@ -47,6 +49,57 @@ const App = () => {
     setContPomodoro(1);
   };
 
+  const iniciarPausa = () => {
+    setEstaLigadoTimer(false);
+    if (contPomodoro % 4 === 0) {
+      setSegundosRestante(tempoPausaLonga.current * 60);
+    } else {
+      setSegundosRestante(tempoPausaCurta.current * 60);
+    }
+
+    setEstaEmPausa(true);
+
+    if (notificationPermission.current === "granted") {
+      const notification = new Notification("Break time!", {
+        body: "Relax a little bit...",
+      });
+    }
+
+    tocarSom();
+  };
+
+  const terminarPausa = () => {
+    setEstaEmPausa(false);
+    setSegundosRestante(tempoCicloPomodoro.current * 60);
+    setContPomodoro((contPomodoro) => contPomodoro + 1);
+
+    if (taskSelected != null) {
+      setTaskList(
+        taskList.map((task) => {
+          if (task.id === taskSelected) {
+            task.count += 1;
+
+            if (task.count == task.pomodoros) {
+              task.completed = true;
+            }
+          }
+
+          return task;
+        }),
+      );
+    }
+
+    setEstaLigadoTimer(true);
+
+    if (notificationPermission.current === "granted") {
+      const notification = new Notification("Back to work!", {
+        body: "Now it's time to focus",
+      });
+    }
+
+    tocarSom();
+  };
+
   const tocarSom = () => {
     timerSound.current.currentTime = 4;
     timerSound.current.play();
@@ -54,45 +107,18 @@ const App = () => {
 
   useEffect(() => {
     setSegundosRestante(tempoCicloPomodoro.current * 60);
+
+    Notification.requestPermission().then((response) => {
+      notificationPermission.current = response;
+    });
   }, []);
 
   useEffect(() => {
     if (segundosRestante === 0) {
       if (estaLigadoTimer === true) {
-        setEstaLigadoTimer(false);
-        if (contPomodoro % 4 === 0) {
-          setSegundosRestante(tempoPausaLonga.current * 60);
-        } else {
-          setSegundosRestante(tempoPausaCurta.current * 60);
-        }
-
-        setEstaEmPausa(true);
-
-        tocarSom();
+        iniciarPausa();
       } else {
-        setEstaEmPausa(false);
-        setSegundosRestante(tempoCicloPomodoro.current * 60);
-        setContPomodoro((contPomodoro) => contPomodoro + 1);
-
-        if (taskSelected != null) {
-          setTaskList(
-            taskList.map((task) => {
-              if (task.id === taskSelected) {
-                task.count += 1;
-
-                if (task.count == task.pomodoros) {
-                  task.completed = true;
-                }
-              }
-
-              return task;
-            }),
-          );
-        }
-
-        setEstaLigadoTimer(true);
-
-        tocarSom();
+        terminarPausa();
       }
     }
 
