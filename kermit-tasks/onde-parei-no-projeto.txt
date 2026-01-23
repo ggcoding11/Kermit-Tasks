@@ -1,2 +1,2 @@
-- Ver como funciona Promises, Async/Await em JavaScript
 - Ver como colocar as particulas quando eu terminar todas as tasks
+- Ver como o async e await funcionam no javascript
