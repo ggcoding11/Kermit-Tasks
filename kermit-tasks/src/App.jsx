@@ -5,6 +5,7 @@ import PomodoroTimer from "./components/PomodoroTimer.jsx";
 import ComponentSelector from "./components/ComponentSelector.jsx";
 import "./App.css";
 import somTimer from "./assets/sounds/somTimer.mp3";
+import JSConfetti from "js-confetti";
 
 const components = [
   { id: 0, name: "Tasks" },
@@ -12,6 +13,8 @@ const components = [
 ];
 
 const App = () => {
+  const jsConfetti = useRef(new JSConfetti());
+
   const [taskList, setTaskList] = useState([]);
   const taskIdAtual = useRef(0);
   const [taskName, setTaskName] = useState("");
@@ -100,6 +103,10 @@ const App = () => {
     tocarSom();
   };
 
+  const jogarConfete = () => {
+    jsConfetti.current.addConfetti();
+  };
+
   const tocarSom = () => {
     timerSound.current.currentTime = 4;
     timerSound.current.play();
@@ -148,6 +155,22 @@ const App = () => {
       clearInterval(timer.current);
     };
   }, [estaLigadoTimer, estaEmPausa]);
+
+  useEffect(() => {
+    if (taskList.length > 0) {
+      let allCompleted = true;
+
+      taskList.forEach((task) => {
+        if (task.count != task.pomodoros) {
+          allCompleted = false;
+        }
+      });
+
+      if (allCompleted === true) {
+        jogarConfete();
+      }
+    }
+  }, [taskList]);
 
   return (
     <div>

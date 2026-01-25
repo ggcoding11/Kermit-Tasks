@@ -1,2 +1,3 @@
-- Ver como colocar as particulas quando eu terminar todas as tasks
-- Ver como o async e await funcionam no javascript
+- Só conferir a lógica do confete pra ver se tudo está em ordem
+
+- Depois dar merge na main, postar no Linkedin e revisar o projeto!
