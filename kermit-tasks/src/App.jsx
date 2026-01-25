@@ -27,8 +27,8 @@ const App = () => {
   const [estaLigadoTimer, setEstaLigadoTimer] = useState(false);
   const [estaEmPausa, setEstaEmPausa] = useState(false);
   const [tempoFormatoPomodoro, setTempoFormatoPomodoro] = useState();
-  const tempoCicloPomodoro = useRef(0.1);
-  const tempoPausaCurta = useRef(0.1);
+  const tempoCicloPomodoro = useRef(25);
+  const tempoPausaCurta = useRef(5);
   const tempoPausaLonga = useRef(30);
   const timer = useRef(null);
   const [segundosRestante, setSegundosRestante] = useState();
