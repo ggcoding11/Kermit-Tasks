@@ -7,6 +7,7 @@ Uma aplicação web para gerenciamento das tarefas diárias atráves de um timer
 ## 📌 Índice 
 * [Tecnologias utilizadas](#-tecnologias-utilizadas)
 * [Funcionalidades](#-funcionalidades)
+* [Deployment](#-deployment)
   
 ## 🔨 Tecnologias utilizadas
 ![Static Badge](https://img.shields.io/badge/HTML-%23E34F26?style=for-the-badge&logo=html5&labelColor=black)  
