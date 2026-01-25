@@ -86,7 +86,7 @@ const Tasks = ({
       <div className="card card-principal p-3">
         <div className="container">
           <header className="d-flex justify-content-center align-items-center gap-2 mt-2">
-            <img src="../photos/logo.png" alt="logo" />
+            <img src="/photos/logo.png" alt="logo" />
             <h1 className="title">Kermit Tasks</h1>
           </header>
 
@@ -224,7 +224,7 @@ const Tasks = ({
               {showPlaceholder && (
                 <div className="d-flex justify-content-center align-items-center flex-column mt-4">
                   <img
-                    src="../photos/work-order.png"
+                    src="/photos/work-order.png"
                     alt="icone-tasks"
                     id="icone-tasks"
                     className="img-fluid"
