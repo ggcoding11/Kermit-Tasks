@@ -162,12 +162,19 @@ const App = () => {
 
       taskList.forEach((task) => {
         if (task.count != task.pomodoros) {
+          6;
           allCompleted = false;
         }
       });
 
       if (allCompleted === true) {
         jogarConfete();
+
+        if (notificationPermission.current === "granted") {
+          const notification = new Notification("All tasks completed!", {
+            body: "Congratulations on finishing all your tasks!",
+          });
+        }
       }
     }
   }, [taskList]);
